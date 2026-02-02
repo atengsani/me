@@ -3,366 +3,671 @@
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Barisan Geometri - Matematika Kelas X</title>
+  <title>Barisan Geometri - Matematika SMK</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&amp;family=Quicksand:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
   <style>
-        body {
-            box-sizing: border-box;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.6s ease-out forwards;
-        }
-        
-        .card {
-            transition: all 0.3s ease;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        
-        .example-card {
-            border-left: 4px solid;
-            transition: all 0.3s ease;
-        }
-        
-        .example-card:hover {
-            transform: translateX(5px);
-        }
-        
-        .quiz-button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            transition: all 0.3s ease;
-        }
-        
-        .quiz-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
-        }
-        
-        .tip-box {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        }
-    </style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    .font-heading {
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .font-body {
+      font-family: 'Quicksand', sans-serif;
+    }
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    }
+    
+    .card-glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .accent-gradient {
+      background: linear-gradient(135deg, #f72585 0%, #7209b7 50%, #3a0ca3 100%);
+    }
+    
+    .text-gradient {
+      background: linear-gradient(135deg, #f72585, #b5179e, #7209b7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .formula-box {
+      background: linear-gradient(135deg, rgba(247, 37, 133, 0.1), rgba(114, 9, 183, 0.1));
+      border-left: 4px solid #f72585;
+    }
+    
+    .tip-box {
+      background: linear-gradient(135deg, rgba(76, 201, 240, 0.1), rgba(67, 97, 238, 0.1));
+      border-left: 4px solid #4cc9f0;
+    }
+    
+    .example-easy {
+      border-left: 4px solid #4ade80;
+    }
+    
+    .example-medium {
+      border-left: 4px solid #fbbf24;
+    }
+    
+    .example-hard {
+      border-left: 4px solid #f87171;
+    }
+    
+    .pulse-glow {
+      animation: pulseGlow 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow: 0 0 20px rgba(247, 37, 133, 0.3);
+      }
+      50% {
+        box-shadow: 0 0 40px rgba(247, 37, 133, 0.6);
+      }
+    }
+    
+    .float-animation {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .section-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
+    }
+    
+    .section-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out;
+    }
+    
+    .accordion-content.open {
+      max-height: 2000px;
+    }
+    
+    .number-badge {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+  </style>
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
- <body class="h-full w-full">
-  <div class="w-full h-full overflow-auto bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50">
-   <div class="max-w-6xl mx-auto px-4 py-8"><!-- Header -->
-    <header class="text-center mb-12 fade-in">
-     <h1 id="page-title" class="text-5xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Barisan Geometri</h1>
-     <p id="school-name" class="text-xl text-gray-700">SMK Negeri 1 Pante Ceureumen</p>
-     <p class="text-lg text-gray-600 mt-2">Matematika Kelas X</p>
-    </header><!-- Pengenalan dengan Masalah Sehari-hari -->
-    <section class="mb-12 card bg-white rounded-2xl p-8 shadow-lg fade-in">
-     <h2 class="text-3xl font-bold text-purple-700 mb-6">🌱 Apa itu Barisan Geometri?</h2>
-     <div class="space-y-6 text-gray-700 leading-relaxed">
-      <p class="text-lg">Pernahkah kamu memperhatikan pertumbuhan bakteri? Atau bagaimana virus menyebar? Atau bahkan saat kamu mem-forward pesan berantai ke teman-temanmu? Semua ini mengikuti pola <span class="font-bold text-purple-600">Barisan Geometri</span>!</p>
-      <div class="bg-gradient-to-r from-purple-100 to-blue-100 p-6 rounded-xl">
-       <h3 class="font-bold text-xl mb-3 text-purple-800">📱 Contoh: Viral di Media Sosial</h3>
-       <p class="mb-3">Kamu mem-posting video lucu. Awalnya hanya 2 teman yang share. Kemudian setiap orang yang share, membuat 2 orang lain juga share:</p>
-       <ul class="list-disc list-inside space-y-2 ml-4">
-        <li>Awalnya: <strong>2 orang</strong> share</li>
-        <li>Putaran 2: <strong>4 orang</strong> share (2 × 2)</li>
-        <li>Putaran 3: <strong>8 orang</strong> share (4 × 2)</li>
-        <li>Putaran 4: <strong>16 orang</strong> share (8 × 2)</li>
-        <li>Putaran 5: <strong>32 orang</strong> share (16 × 2)</li>
-       </ul>
-       <p class="mt-4 font-semibold text-purple-700">Pola: 2, 4, 8, 16, 32, ... (setiap suku dikali 2)</p>
+ <body class="h-full font-body">
+  <div id="app-wrapper" class="h-full overflow-auto gradient-bg text-white"><!-- Hero Section -->
+   <header class="relative overflow-hidden py-12 md:py-20 px-4">
+    <div class="absolute inset-0 opacity-20">
+     <div class="absolute top-10 left-10 w-20 h-20 border-2 border-pink-500 rounded-full float-animation"></div>
+     <div class="absolute top-32 right-20 w-16 h-16 border-2 border-purple-500 rounded-lg float-animation" style="animation-delay: 0.5s;"></div>
+     <div class="absolute bottom-20 left-1/4 w-12 h-12 border-2 border-blue-400 rounded-full float-animation" style="animation-delay: 1s;"></div>
+    </div>
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+     <div class="inline-block mb-4 px-4 py-2 rounded-full bg-white/10 text-sm font-medium">
+      📚 Matematika Kelas X
+     </div>
+     <h1 id="page-title" class="font-heading text-4xl md:text-6xl font-extrabold mb-4 text-gradient">Barisan Geometri</h1>
+     <p id="school-name" class="text-lg md:text-xl text-gray-300 mb-6">SMK Negeri 1 Pante Ceureumen</p>
+     <div class="flex flex-wrap justify-center gap-3 text-sm"><span class="px-3 py-1 rounded-full bg-green-500/20 text-green-300">🎯 Mudah Dipahami</span> <span class="px-3 py-1 rounded-full bg-yellow-500/20 text-yellow-300">💡 Contoh Nyata</span> <span class="px-3 py-1 rounded-full bg-purple-500/20 text-purple-300">🚀 Trik Jitu</span>
+     </div>
+    </div>
+   </header><!-- Main Content -->
+   <main class="max-w-4xl mx-auto px-4 pb-12 space-y-8"><!-- Pengertian Section -->
+    <section class="section-reveal card-glass rounded-2xl p-6 md:p-8">
+     <div class="flex items-center gap-3 mb-6">
+      <div class="w-12 h-12 rounded-xl accent-gradient flex items-center justify-center text-2xl">
+       📖
+      </div>
+      <h2 class="font-heading text-2xl md:text-3xl font-bold">Apa itu Barisan Geometri?</h2>
+     </div>
+     <div class="space-y-4 text-gray-200 leading-relaxed">
+      <p><strong class="text-white">Barisan Geometri</strong> adalah barisan bilangan yang setiap sukunya diperoleh dari suku sebelumnya dengan cara <span class="text-pink-400 font-semibold">dikalikan dengan suatu bilangan tetap</span> yang disebut <span class="text-purple-400 font-semibold">rasio (r)</span>.</p>
+      <div class="formula-box rounded-xl p-5 my-6">
+       <p class="text-sm text-pink-300 mb-2 font-medium">📐 Rumus Umum:</p>
+       <div class="text-center space-y-3">
+        <p class="text-xl md:text-2xl font-heading font-bold text-white">U<sub>n</sub> = a × r<sup>(n-1)</sup></p>
+        <div class="text-sm text-gray-300 space-y-1">
+         <p>U<sub>n</sub> = suku ke-n</p>
+         <p>a = suku pertama</p>
+         <p>r = rasio (pembanding tetap)</p>
+         <p>n = banyak suku</p>
+        </div>
+       </div>
+      </div>
+      <div class="formula-box rounded-xl p-5">
+       <p class="text-sm text-pink-300 mb-2 font-medium">🔢 Rumus Mencari Rasio:</p>
+       <div class="text-center">
+        <p class="text-xl md:text-2xl font-heading font-bold text-white">r = U<sub>n</sub> ÷ U<sub>n-1</sub></p>
+        <p class="text-sm text-gray-300 mt-2">Rasio = suku ke-n dibagi suku sebelumnya</p>
+       </div>
       </div>
      </div>
-    </section><!-- Definisi dan Rumus -->
-    <section class="mb-12 card bg-white rounded-2xl p-8 shadow-lg fade-in">
-     <h2 class="text-3xl font-bold text-blue-700 mb-6">📐 Definisi &amp; Rumus</h2>
-     <div class="space-y-6">
-      <div class="bg-blue-50 p-6 rounded-xl">
-       <h3 class="font-bold text-xl mb-3 text-blue-800">Definisi</h3>
-       <p class="text-gray-700">Barisan Geometri adalah barisan bilangan dimana setiap suku diperoleh dengan <strong>mengalikan suku sebelumnya dengan bilangan tetap</strong> yang disebut <strong>rasio (r)</strong>.</p>
+    </section><!-- Contoh Kehidupan Sehari-hari -->
+    <section class="section-reveal card-glass rounded-2xl p-6 md:p-8">
+     <div class="flex items-center gap-3 mb-6">
+      <div class="w-12 h-12 rounded-xl accent-gradient flex items-center justify-center text-2xl">
+       🌍
       </div>
-      <div class="grid md:grid-cols-2 gap-6">
-       <div class="bg-gradient-to-br from-purple-100 to-purple-50 p-6 rounded-xl">
-        <h4 class="font-bold text-lg mb-3 text-purple-800">Suku ke-n</h4>
-        <div class="bg-white p-4 rounded-lg text-center">
-         <p class="text-2xl font-bold text-purple-700">U<sub>n</sub> = a × r<sup>(n-1)</sup></p>
-        </div>
-        <div class="mt-4 space-y-2 text-sm text-gray-700">
-         <p>• <strong>U<sub>n</sub></strong> = suku ke-n</p>
-         <p>• <strong>a</strong> = suku pertama</p>
-         <p>• <strong>r</strong> = rasio</p>
-         <p>• <strong>n</strong> = nomor suku</p>
-        </div>
+      <h2 class="font-heading text-2xl md:text-3xl font-bold">Dalam Kehidupan Sehari-hari</h2>
+     </div>
+     <div class="grid md:grid-cols-2 gap-4"><!-- Contoh 1 -->
+      <div class="bg-white/5 rounded-xl p-5 border border-white/10 hover:border-pink-500/50 transition-all">
+       <div class="text-3xl mb-3">
+        🦠
        </div>
-       <div class="bg-gradient-to-br from-blue-100 to-blue-50 p-6 rounded-xl">
-        <h4 class="font-bold text-lg mb-3 text-blue-800">Jumlah n Suku Pertama</h4>
-        <div class="bg-white p-4 rounded-lg text-center">
-         <p class="text-xl font-bold text-blue-700 mb-2">S<sub>n</sub> = a(r<sup>n</sup> - 1) / (r - 1)</p>
-         <p class="text-sm text-gray-600">(untuk r &gt; 1)</p>
-        </div>
-        <div class="bg-white p-4 rounded-lg text-center mt-3">
-         <p class="text-xl font-bold text-blue-700 mb-2">S<sub>n</sub> = a(1 - r<sup>n</sup>) / (1 - r)</p>
-         <p class="text-sm text-gray-600">(untuk r &lt; 1)</p>
-        </div>
+       <h3 class="font-heading font-bold text-lg mb-2 text-pink-300">Pembelahan Bakteri</h3>
+       <p class="text-sm text-gray-300">1 bakteri membelah menjadi 2, lalu 4, 8, 16... Setiap jam jumlahnya berlipat 2 kali (r = 2).</p>
+      </div><!-- Contoh 2 -->
+      <div class="bg-white/5 rounded-xl p-5 border border-white/10 hover:border-purple-500/50 transition-all">
+       <div class="text-3xl mb-3">
+        💰
        </div>
-      </div>
-      <div class="bg-gradient-to-r from-green-100 to-teal-100 p-6 rounded-xl">
-       <h4 class="font-bold text-lg mb-3 text-green-800">Cara Mencari Rasio (r)</h4>
-       <div class="bg-white p-4 rounded-lg text-center">
-        <p class="text-2xl font-bold text-green-700">r = U<sub>n</sub> / U<sub>n-1</sub></p>
+       <h3 class="font-heading font-bold text-lg mb-2 text-purple-300">Bunga Majemuk</h3>
+       <p class="text-sm text-gray-300">Tabungan Rp1.000.000 dengan bunga 10% per tahun: 1.000.000 → 1.100.000 → 1.210.000... (r = 1,1)</p>
+      </div><!-- Contoh 3 -->
+      <div class="bg-white/5 rounded-xl p-5 border border-white/10 hover:border-blue-500/50 transition-all">
+       <div class="text-3xl mb-3">
+        📱
        </div>
-       <p class="mt-3 text-sm text-gray-700 text-center">Membagi suku sekarang dengan suku sebelumnya</p>
+       <h3 class="font-heading font-bold text-lg mb-2 text-blue-300">Penyebaran Berita Viral</h3>
+       <p class="text-sm text-gray-300">1 orang share ke 3 orang, masing-masing share ke 3 orang: 1, 3, 9, 27, 81... (r = 3)</p>
+      </div><!-- Contoh 4 -->
+      <div class="bg-white/5 rounded-xl p-5 border border-white/10 hover:border-green-500/50 transition-all">
+       <div class="text-3xl mb-3">
+        🚗
+       </div>
+       <h3 class="font-heading font-bold text-lg mb-2 text-green-300">Penurunan Harga Mobil</h3>
+       <p class="text-sm text-gray-300">Mobil seharga Rp200 juta turun 20% per tahun: 200, 160, 128, 102,4... juta (r = 0,8)</p>
       </div>
      </div>
     </section><!-- Contoh Soal -->
-    <section class="mb-12 fade-in">
-     <h2 class="text-3xl font-bold text-pink-700 mb-6">💡 Contoh Soal</h2><!-- Soal Mudah -->
-     <div class="example-card bg-white rounded-xl p-6 shadow-lg mb-6 border-green-500">
-      <div class="flex items-center mb-4"><span class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">MUDAH</span>
-       <h3 class="font-bold text-xl text-gray-800">Soal 1: Mencari Suku Tertentu</h3>
+    <section class="section-reveal card-glass rounded-2xl p-6 md:p-8">
+     <div class="flex items-center gap-3 mb-6">
+      <div class="w-12 h-12 rounded-xl accent-gradient flex items-center justify-center text-2xl">
+       ✏️
       </div>
-      <div class="space-y-4">
-       <p class="text-gray-700"><strong>Soal:</strong> Sebuah bakteri membelah diri menjadi 2 setiap jam. Jika awalnya ada 3 bakteri, berapa jumlah bakteri setelah 5 jam?</p>
-       <div class="bg-green-50 p-4 rounded-lg">
-        <p class="font-semibold text-green-800 mb-2">Penyelesaian:</p>
-        <p class="text-gray-700">Diketahui: a = 3, r = 2, n = 6 (jam ke-0 sampai jam ke-5 = 6 posisi)</p>
-        <p class="text-gray-700 mt-2">U<sub>6</sub> = 3 × 2<sup>5</sup> = 3 × 32 = <strong class="text-green-700 text-lg">96 bakteri</strong></p>
+      <h2 class="font-heading text-2xl md:text-3xl font-bold">Contoh Soal</h2>
+     </div>
+     <div class="space-y-4"><!-- Soal Mudah -->
+      <div class="accordion-item"><button onclick="toggleAccordion(this)" class="w-full text-left">
+        <div class="example-easy bg-white/5 rounded-xl p-5 hover:bg-white/10 transition-all">
+         <div class="flex items-start gap-3">
+          <div class="number-badge bg-green-500/20 text-green-400">
+           1
+          </div>
+          <div class="flex-1">
+           <div class="flex items-center gap-2 mb-2"><span class="px-2 py-0.5 rounded text-xs bg-green-500/20 text-green-300 font-medium">MUDAH</span> <span class="text-xs text-gray-400">⏱️ 2 menit</span>
+           </div>
+           <p class="text-white font-medium">Tentukan suku ke-5 dari barisan 2, 6, 18, 54, ...</p>
+           <p class="text-sm text-gray-400 mt-2 flex items-center gap-2"><span>Klik untuk melihat pembahasan</span>
+            <svg class="w-4 h-4 accordion-arrow transition-transform" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg></p>
+          </div>
+         </div>
+        </div></button>
+       <div class="accordion-content">
+        <div class="bg-green-500/5 rounded-b-xl p-5 border-l-4 border-green-500 ml-4 mr-0 md:ml-11">
+         <p class="font-medium text-green-300 mb-3">💡 Pembahasan:</p>
+         <div class="space-y-2 text-sm text-gray-200">
+          <p><strong>Langkah 1:</strong> Cari rasio (r)</p>
+          <p class="pl-4">r = 6 ÷ 2 = <span class="text-green-400 font-bold">3</span></p>
+          <p><strong>Langkah 2:</strong> Identifikasi nilai a dan n</p>
+          <p class="pl-4">a = 2, n = 5</p>
+          <p><strong>Langkah 3:</strong> Masukkan ke rumus</p>
+          <p class="pl-4">U₅ = a × r<sup>(n-1)</sup></p>
+          <p class="pl-4">U₅ = 2 × 3<sup>(5-1)</sup></p>
+          <p class="pl-4">U₅ = 2 × 3⁴</p>
+          <p class="pl-4">U₅ = 2 × 81 = <span class="text-green-400 font-bold text-lg">162</span></p>
+         </div>
+        </div>
+       </div>
+      </div><!-- Soal Sedang -->
+      <div class="accordion-item"><button onclick="toggleAccordion(this)" class="w-full text-left">
+        <div class="example-medium bg-white/5 rounded-xl p-5 hover:bg-white/10 transition-all">
+         <div class="flex items-start gap-3">
+          <div class="number-badge bg-yellow-500/20 text-yellow-400">
+           2
+          </div>
+          <div class="flex-1">
+           <div class="flex items-center gap-2 mb-2"><span class="px-2 py-0.5 rounded text-xs bg-yellow-500/20 text-yellow-300 font-medium">SEDANG</span> <span class="text-xs text-gray-400">⏱️ 4 menit</span>
+           </div>
+           <p class="text-white font-medium">Sebuah bola dijatuhkan dari ketinggian 128 cm. Setiap memantul, tingginya menjadi ½ dari tinggi sebelumnya. Berapa tinggi pantulan ke-4?</p>
+           <p class="text-sm text-gray-400 mt-2 flex items-center gap-2"><span>Klik untuk melihat pembahasan</span>
+            <svg class="w-4 h-4 accordion-arrow transition-transform" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg></p>
+          </div>
+         </div>
+        </div></button>
+       <div class="accordion-content">
+        <div class="bg-yellow-500/5 rounded-b-xl p-5 border-l-4 border-yellow-500 ml-4 mr-0 md:ml-11">
+         <p class="font-medium text-yellow-300 mb-3">💡 Pembahasan:</p>
+         <div class="space-y-2 text-sm text-gray-200">
+          <p><strong>Diketahui:</strong></p>
+          <p class="pl-4">• Tinggi awal (a) = 128 cm</p>
+          <p class="pl-4">• Rasio (r) = ½ = 0,5</p>
+          <p class="pl-4">• n = 4 (pantulan ke-4)</p>
+          <p class="mt-2"><strong>Penyelesaian:</strong></p>
+          <p class="pl-4">U₄ = a × r<sup>(n-1)</sup></p>
+          <p class="pl-4">U₄ = 128 × (½)<sup>(4-1)</sup></p>
+          <p class="pl-4">U₄ = 128 × (½)³</p>
+          <p class="pl-4">U₄ = 128 × ⅛</p>
+          <p class="pl-4">U₄ = <span class="text-yellow-400 font-bold text-lg">16 cm</span></p>
+          <p class="mt-2 text-gray-400 text-xs">📝 Urutan: 128 → 64 → 32 → 16</p>
+         </div>
+        </div>
+       </div>
+      </div><!-- Soal Sedang 2 -->
+      <div class="accordion-item"><button onclick="toggleAccordion(this)" class="w-full text-left">
+        <div class="example-medium bg-white/5 rounded-xl p-5 hover:bg-white/10 transition-all">
+         <div class="flex items-start gap-3">
+          <div class="number-badge bg-yellow-500/20 text-yellow-400">
+           3
+          </div>
+          <div class="flex-1">
+           <div class="flex items-center gap-2 mb-2"><span class="px-2 py-0.5 rounded text-xs bg-yellow-500/20 text-yellow-300 font-medium">SEDANG</span> <span class="text-xs text-gray-400">⏱️ 5 menit</span>
+           </div>
+           <p class="text-white font-medium">Suatu barisan geometri memiliki suku ke-3 = 12 dan suku ke-6 = 96. Tentukan suku pertama dan rasionya!</p>
+           <p class="text-sm text-gray-400 mt-2 flex items-center gap-2"><span>Klik untuk melihat pembahasan</span>
+            <svg class="w-4 h-4 accordion-arrow transition-transform" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg></p>
+          </div>
+         </div>
+        </div></button>
+       <div class="accordion-content">
+        <div class="bg-yellow-500/5 rounded-b-xl p-5 border-l-4 border-yellow-500 ml-4 mr-0 md:ml-11">
+         <p class="font-medium text-yellow-300 mb-3">💡 Pembahasan:</p>
+         <div class="space-y-2 text-sm text-gray-200">
+          <p><strong>Diketahui:</strong> U₃ = 12, U₆ = 96</p>
+          <p class="mt-2"><strong>Langkah 1:</strong> Gunakan perbandingan</p>
+          <p class="pl-4">U₆ ÷ U₃ = (a × r⁵) ÷ (a × r²) = r³</p>
+          <p class="pl-4">96 ÷ 12 = r³</p>
+          <p class="pl-4">8 = r³</p>
+          <p class="pl-4">r = ∛8 = <span class="text-yellow-400 font-bold">2</span></p>
+          <p class="mt-2"><strong>Langkah 2:</strong> Cari suku pertama</p>
+          <p class="pl-4">U₃ = a × r²</p>
+          <p class="pl-4">12 = a × 2²</p>
+          <p class="pl-4">12 = a × 4</p>
+          <p class="pl-4">a = 12 ÷ 4 = <span class="text-yellow-400 font-bold">3</span></p>
+          <p class="mt-2 p-2 bg-yellow-500/10 rounded"><strong>Jawaban:</strong> a = 3, r = 2</p>
+         </div>
+        </div>
+       </div>
+      </div><!-- Soal Sulit -->
+      <div class="accordion-item"><button onclick="toggleAccordion(this)" class="w-full text-left">
+        <div class="example-hard bg-white/5 rounded-xl p-5 hover:bg-white/10 transition-all">
+         <div class="flex items-start gap-3">
+          <div class="number-badge bg-red-500/20 text-red-400">
+           4
+          </div>
+          <div class="flex-1">
+           <div class="flex items-center gap-2 mb-2"><span class="px-2 py-0.5 rounded text-xs bg-red-500/20 text-red-300 font-medium">SULIT</span> <span class="text-xs text-gray-400">⏱️ 7 menit</span>
+           </div>
+           <p class="text-white font-medium">Pak Ahmad menabung di bank dengan sistem bunga majemuk 10% per tahun. Jika tabungan awal Rp5.000.000, berapa total tabungan setelah 3 tahun?</p>
+           <p class="text-sm text-gray-400 mt-2 flex items-center gap-2"><span>Klik untuk melihat pembahasan</span>
+            <svg class="w-4 h-4 accordion-arrow transition-transform" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg></p>
+          </div>
+         </div>
+        </div></button>
+       <div class="accordion-content">
+        <div class="bg-red-500/5 rounded-b-xl p-5 border-l-4 border-red-500 ml-4 mr-0 md:ml-11">
+         <p class="font-medium text-red-300 mb-3">💡 Pembahasan:</p>
+         <div class="space-y-2 text-sm text-gray-200">
+          <p><strong>Konsep:</strong> Bunga majemuk membentuk barisan geometri!</p>
+          <p class="pl-4">• Tabungan awal (a) = Rp5.000.000</p>
+          <p class="pl-4">• Bunga 10% berarti dikalikan 1,1 tiap tahun</p>
+          <p class="pl-4">• Rasio (r) = 1 + 10% = 1,1</p>
+          <p class="pl-4">• n = 4 (tahun ke-0, 1, 2, 3 → suku ke-4)</p>
+          <p class="mt-2"><strong>Penyelesaian:</strong></p>
+          <p class="pl-4">U₄ = a × r<sup>(n-1)</sup></p>
+          <p class="pl-4">U₄ = 5.000.000 × 1,1<sup>(4-1)</sup></p>
+          <p class="pl-4">U₄ = 5.000.000 × 1,1³</p>
+          <p class="pl-4">U₄ = 5.000.000 × 1,331</p>
+          <p class="pl-4">U₄ = <span class="text-red-400 font-bold text-lg">Rp6.655.000</span></p>
+          <p class="mt-2 text-gray-400 text-xs">📝 Tahun 0: 5jt → Tahun 1: 5,5jt → Tahun 2: 6,05jt → Tahun 3: 6,655jt</p>
+         </div>
+        </div>
+       </div>
+      </div><!-- Soal Sulit 2 -->
+      <div class="accordion-item"><button onclick="toggleAccordion(this)" class="w-full text-left">
+        <div class="example-hard bg-white/5 rounded-xl p-5 hover:bg-white/10 transition-all">
+         <div class="flex items-start gap-3">
+          <div class="number-badge bg-red-500/20 text-red-400">
+           5
+          </div>
+          <div class="flex-1">
+           <div class="flex items-center gap-2 mb-2"><span class="px-2 py-0.5 rounded text-xs bg-red-500/20 text-red-300 font-medium">SULIT</span> <span class="text-xs text-gray-400">⏱️ 8 menit</span>
+           </div>
+           <p class="text-white font-medium">Tiga suku berurutan dalam barisan geometri adalah (x-1), (x+1), dan (4x-2). Tentukan nilai x dan ketiga suku tersebut!</p>
+           <p class="text-sm text-gray-400 mt-2 flex items-center gap-2"><span>Klik untuk melihat pembahasan</span>
+            <svg class="w-4 h-4 accordion-arrow transition-transform" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg></p>
+          </div>
+         </div>
+        </div></button>
+       <div class="accordion-content">
+        <div class="bg-red-500/5 rounded-b-xl p-5 border-l-4 border-red-500 ml-4 mr-0 md:ml-11">
+         <p class="font-medium text-red-300 mb-3">💡 Pembahasan:</p>
+         <div class="space-y-2 text-sm text-gray-200">
+          <p><strong>Sifat Barisan Geometri:</strong></p>
+          <p class="pl-4">Suku tengah² = suku pertama × suku ketiga</p>
+          <p class="pl-4">(x+1)² = (x-1)(4x-2)</p>
+          <p class="mt-2"><strong>Langkah penyelesaian:</strong></p>
+          <p class="pl-4">x² + 2x + 1 = 4x² - 2x - 4x + 2</p>
+          <p class="pl-4">x² + 2x + 1 = 4x² - 6x + 2</p>
+          <p class="pl-4">0 = 3x² - 8x + 1</p>
+          <p class="pl-4">Gunakan rumus ABC:</p>
+          <p class="pl-4">x = (8 ± √(64-12)) ÷ 6</p>
+          <p class="pl-4">x = (8 ± √52) ÷ 6</p>
+          <p class="pl-4">x₁ ≈ 2,54 atau x₂ ≈ 0,13</p>
+          <p class="mt-2"><strong>Untuk x ≈ 2,54:</strong></p>
+          <p class="pl-4">Suku 1: 2,54 - 1 = <span class="text-red-400 font-bold">1,54</span></p>
+          <p class="pl-4">Suku 2: 2,54 + 1 = <span class="text-red-400 font-bold">3,54</span></p>
+          <p class="pl-4">Suku 3: 4(2,54) - 2 = <span class="text-red-400 font-bold">8,16</span></p>
+         </div>
+        </div>
        </div>
       </div>
-     </div><!-- Soal Sedang -->
-     <div class="example-card bg-white rounded-xl p-6 shadow-lg mb-6 border-yellow-500">
-      <div class="flex items-center mb-4"><span class="bg-yellow-500 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">SEDANG</span>
-       <h3 class="font-bold text-xl text-gray-800">Soal 2: Mencari Rasio</h3>
+     </div>
+    </section><!-- Tips & Trik -->
+    <section class="section-reveal card-glass rounded-2xl p-6 md:p-8">
+     <div class="flex items-center gap-3 mb-6">
+      <div class="w-12 h-12 rounded-xl accent-gradient flex items-center justify-center text-2xl">
+       🎯
       </div>
-      <div class="space-y-4">
-       <p class="text-gray-700"><strong>Soal:</strong> Diketahui barisan geometri: 5, 15, 45, 135, ... Tentukan rasio dan suku ke-7!</p>
-       <div class="bg-yellow-50 p-4 rounded-lg">
-        <p class="font-semibold text-yellow-800 mb-2">Penyelesaian:</p>
-        <p class="text-gray-700">r = 15/5 = 3</p>
-        <p class="text-gray-700 mt-2">U<sub>7</sub> = 5 × 3<sup>6</sup> = 5 × 729 = <strong class="text-yellow-700 text-lg">3.645</strong></p>
+      <h2 class="font-heading text-2xl md:text-3xl font-bold">Trik Jitu Menjawab Soal</h2>
+     </div>
+     <div class="space-y-4">
+      <div class="tip-box rounded-xl p-5">
+       <div class="flex items-start gap-3">
+        <div class="text-2xl">
+         1️⃣
+        </div>
+        <div>
+         <h3 class="font-bold text-blue-300 mb-1">Identifikasi Dulu!</h3>
+         <p class="text-sm text-gray-300">Selalu cari tahu dulu: apa nilai <strong>a</strong> (suku pertama), <strong>r</strong> (rasio), dan <strong>n</strong> (suku ke berapa yang dicari).</p>
+        </div>
        </div>
       </div>
-     </div><!-- Soal Sulit -->
-     <div class="example-card bg-white rounded-xl p-6 shadow-lg mb-6 border-red-500">
-      <div class="flex items-center mb-4"><span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">SULIT</span>
-       <h3 class="font-bold text-xl text-gray-800">Soal 3: Jumlah n Suku Pertama</h3>
-      </div>
-      <div class="space-y-4">
-       <p class="text-gray-700"><strong>Soal:</strong> Pak Ahmad menabung dengan pola geometri. Bulan pertama Rp 100.000, bulan kedua Rp 150.000, bulan ketiga Rp 225.000. Berapa total tabungan setelah 6 bulan?</p>
-       <div class="bg-red-50 p-4 rounded-lg">
-        <p class="font-semibold text-red-800 mb-2">Penyelesaian:</p>
-        <p class="text-gray-700">Diketahui: a = 100.000, r = 150.000/100.000 = 1,5, n = 6</p>
-        <p class="text-gray-700 mt-2">S<sub>6</sub> = 100.000 × (1,5<sup>6</sup> - 1) / (1,5 - 1)</p>
-        <p class="text-gray-700">S<sub>6</sub> = 100.000 × (11,390625 - 1) / 0,5</p>
-        <p class="text-gray-700">S<sub>6</sub> = 100.000 × 20,78125</p>
-        <p class="text-gray-700">S<sub>6</sub> = <strong class="text-red-700 text-lg">Rp 2.078.125</strong></p>
+      <div class="tip-box rounded-xl p-5">
+       <div class="flex items-start gap-3">
+        <div class="text-2xl">
+         2️⃣
+        </div>
+        <div>
+         <h3 class="font-bold text-blue-300 mb-1">Ciri Khas Barisan Geometri</h3>
+         <p class="text-sm text-gray-300">Kalau <strong>r &gt; 1</strong> → barisan membesar. Kalau <strong>0 &lt; r &lt; 1</strong> → barisan mengecil. Kalau <strong>r negatif</strong> → tanda suku berganti (+, -, +, -).</p>
+        </div>
        </div>
       </div>
-     </div><!-- Soal Aplikasi -->
-     <div class="example-card bg-white rounded-xl p-6 shadow-lg border-purple-500">
-      <div class="flex items-center mb-4"><span class="bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">APLIKASI</span>
-       <h3 class="font-bold text-xl text-gray-800">Soal 4: Masalah Penyebaran Informasi</h3>
+      <div class="tip-box rounded-xl p-5">
+       <div class="flex items-start gap-3">
+        <div class="text-2xl">
+         3️⃣
+        </div>
+        <div>
+         <h3 class="font-bold text-blue-300 mb-1">Trik Suku Tengah</h3>
+         <p class="text-sm text-gray-300">Untuk 3 suku berurutan: <strong>b² = a × c</strong>. Suku tengah dikuadratkan = hasil kali suku pertama dan ketiga.</p>
+        </div>
+       </div>
       </div>
-      <div class="space-y-4">
-       <p class="text-gray-700"><strong>Soal:</strong> Sebuah berita viral dimulai dari 1 orang. Setiap orang yang tahu akan memberitahu 3 orang lain. Pada putaran ke berapa jumlah orang yang tahu mencapai lebih dari 1.000 orang?</p>
-       <div class="bg-purple-50 p-4 rounded-lg">
-        <p class="font-semibold text-purple-800 mb-2">Penyelesaian:</p>
-        <p class="text-gray-700">a = 1, r = 3, Cari n dimana U<sub>n</sub> &gt; 1.000</p>
-        <p class="text-gray-700 mt-2">1 × 3<sup>(n-1)</sup> &gt; 1.000</p>
-        <p class="text-gray-700">3<sup>(n-1)</sup> &gt; 1.000</p>
-        <p class="text-gray-700 mt-2">Coba n = 7: 3<sup>6</sup> = 729 (belum)</p>
-        <p class="text-gray-700">Coba n = 8: 3<sup>7</sup> = 2.187 (sudah!)</p>
-        <p class="text-gray-700 mt-2"><strong class="text-purple-700 text-lg">Jawaban: Putaran ke-8</strong></p>
+      <div class="tip-box rounded-xl p-5">
+       <div class="flex items-start gap-3">
+        <div class="text-2xl">
+         4️⃣
+        </div>
+        <div>
+         <h3 class="font-bold text-blue-300 mb-1">Perbandingan Dua Suku</h3>
+         <p class="text-sm text-gray-300">Jika tahu U<sub>m</sub> dan U<sub>n</sub>, gunakan: <strong>U<sub>m</sub>/U<sub>n</sub> = r<sup>(m-n)</sup></strong>. Ini sangat membantu mencari rasio!</p>
+        </div>
+       </div>
+      </div>
+      <div class="tip-box rounded-xl p-5">
+       <div class="flex items-start gap-3">
+        <div class="text-2xl">
+         5️⃣
+        </div>
+        <div>
+         <h3 class="font-bold text-blue-300 mb-1">Hati-hati dengan Pangkat!</h3>
+         <p class="text-sm text-gray-300">Ingat rumus: U<sub>n</sub> = a × r<sup><strong>(n-1)</strong></sup>. Pangkatnya adalah <strong>n dikurangi 1</strong>, bukan n!</p>
+        </div>
        </div>
       </div>
      </div>
-    </section><!-- Trik dan Tips -->
-    <section class="mb-12 fade-in">
-     <h2 class="text-3xl font-bold text-pink-700 mb-6">🎯 Trik Cepat Menyelesaikan Soal</h2>
-     <div class="grid md:grid-cols-2 gap-6">
-      <div class="tip-box rounded-xl p-6 shadow-lg text-white">
-       <h3 class="font-bold text-xl mb-3">✨ Trik 1: Cek Rasio Dulu!</h3>
-       <p>Selalu hitung rasio terlebih dahulu dengan membagi suku kedua dengan suku pertama. Ini akan memudahkan semua perhitungan selanjutnya!</p>
+    </section><!-- Ringkasan -->
+    <section class="section-reveal card-glass rounded-2xl p-6 md:p-8">
+     <div class="flex items-center gap-3 mb-6">
+      <div class="w-12 h-12 rounded-xl accent-gradient flex items-center justify-center text-2xl">
+       📋
       </div>
-      <div class="bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl p-6 shadow-lg text-white">
-       <h3 class="font-bold text-xl mb-3">🚀 Trik 2: Hafalkan Pangkat 2 &amp; 3</h3>
-       <p>Hafal pangkat 2 (2, 4, 8, 16, 32, 64, 128, 256, 512, 1024) dan pangkat 3 (3, 9, 27, 81, 243, 729) akan sangat membantu!</p>
+      <h2 class="font-heading text-2xl md:text-3xl font-bold">Ringkasan Rumus</h2>
+     </div>
+     <div class="grid md:grid-cols-2 gap-4">
+      <div class="bg-gradient-to-br from-pink-500/10 to-purple-500/10 rounded-xl p-5 border border-pink-500/30">
+       <p class="text-pink-300 text-sm mb-2">Suku ke-n</p>
+       <p class="font-heading text-xl font-bold">U<sub>n</sub> = a × r<sup>(n-1)</sup></p>
       </div>
-      <div class="bg-gradient-to-br from-green-500 to-teal-500 rounded-xl p-6 shadow-lg text-white">
-       <h3 class="font-bold text-xl mb-3">💡 Trik 3: Perhatikan r &lt; 1 atau r &gt; 1</h3>
-       <p>Jika r &gt; 1, barisan naik (gunakan rumus dengan r<sup>n</sup> - 1). Jika r &lt; 1, barisan turun (gunakan 1 - r<sup>n</sup>).</p>
+      <div class="bg-gradient-to-br from-purple-500/10 to-blue-500/10 rounded-xl p-5 border border-purple-500/30">
+       <p class="text-purple-300 text-sm mb-2">Rasio</p>
+       <p class="font-heading text-xl font-bold">r = U<sub>n</sub> ÷ U<sub>(n-1)</sub></p>
       </div>
-      <div class="bg-gradient-to-br from-yellow-500 to-orange-500 rounded-xl p-6 shadow-lg text-white">
-       <h3 class="font-bold text-xl mb-3">🎓 Trik 4: Buat Pola Visual</h3>
-       <p>Tulis beberapa suku pertama secara berurutan untuk melihat polanya. Kadang pola lebih mudah dilihat daripada dihitung!</p>
+      <div class="bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-xl p-5 border border-blue-500/30">
+       <p class="text-blue-300 text-sm mb-2">Suku Pertama</p>
+       <p class="font-heading text-xl font-bold">a = U<sub>n</sub> ÷ r<sup>(n-1)</sup></p>
+      </div>
+      <div class="bg-gradient-to-br from-cyan-500/10 to-green-500/10 rounded-xl p-5 border border-cyan-500/30">
+       <p class="text-cyan-300 text-sm mb-2">Sifat 3 Suku</p>
+       <p class="font-heading text-xl font-bold">b² = a × c</p>
       </div>
      </div>
-     <div class="mt-6 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl p-6 shadow-lg text-white">
-      <h3 class="font-bold text-xl mb-3">⚡ Trik 5: Gunakan Kalkulator dengan Bijak</h3>
-      <p class="mb-2">Untuk pangkat besar, gunakan tombol x<sup>y</sup> di kalkulator. Tapi pastikan kamu paham konsepnya dulu!</p>
-      <p class="text-sm opacity-90">Contoh: Untuk 2<sup>8</sup>, tekan 2, lalu x<sup>y</sup>, lalu 8, lalu =</p>
-     </div>
-    </section><!-- Tombol Kuis -->
-    <section class="mb-12 text-center fade-in">
-     <div class="bg-white rounded-2xl p-8 shadow-lg">
-      <h2 class="text-3xl font-bold text-gray-800 mb-4">Siap Menguji Pemahamanmu? 🎯</h2>
-      <p class="text-gray-600 mb-6 text-lg">Kerjakan kuis untuk mengukur sejauh mana kamu memahami Barisan Geometri!</p><a href="https://atengsani/kuis-barisan-geometri.html" target="_blank" rel="noopener noreferrer" class="quiz-button inline-block text-white px-12 py-4 rounded-full text-xl font-bold shadow-xl" id="quiz-button"> 🚀 Mulai Kuis Sekarang! </a>
-     </div>
-    </section><!-- Footer -->
-    <footer class="text-center py-8 fade-in">
-     <div class="border-t border-gray-300 pt-6">
-      <p id="footer-credit" class="text-gray-600 text-lg font-medium">by @atengtransani</p>
-      <p class="text-gray-500 text-sm mt-2">© 2024 SMK Negeri 1 Pante Ceureumen</p>
-     </div>
-    </footer>
-   </div>
+    </section><!-- CTA Kuis -->
+    <section class="section-reveal"><a href="https://atengsani.com/kuis-barisan-geometri.html" target="_blank" rel="noopener noreferrer" class="block accent-gradient rounded-2xl p-8 text-center pulse-glow hover:scale-[1.02] transition-transform">
+      <div class="text-5xl mb-4">
+       🏆
+      </div><h2 class="font-heading text-2xl md:text-3xl font-bold mb-2">Siap Uji Kemampuanmu?</h2><p class="text-white/80 mb-4">Kerjakan kuis untuk mengukur pemahamanmu tentang Barisan Geometri!</p>
+      <div class="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 px-6 py-3 rounded-full font-bold transition-all"><span>Mulai Kuis</span>
+       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+       </svg>
+      </div></a>
+    </section>
+   </main><!-- Footer -->
+   <footer class="border-t border-white/10 py-6 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+     <p id="footer-text" class="text-gray-400 text-sm">by @atengtransani</p>
+     <p class="text-gray-500 text-xs mt-2">© 2024 Materi Pembelajaran Matematika</p>
+    </div>
+   </footer>
   </div>
   <script>
-        const defaultConfig = {
-            page_title: "Barisan Geometri",
-            school_name: "SMK Negeri 1 Pante Ceureumen",
-            quiz_button_text: "🚀 Mulai Kuis Sekarang!",
-            footer_credit: "by @atengtransani",
-            primary_color: "#9333ea",
-            secondary_color: "#ffffff",
-            text_color: "#374151",
-            accent_color: "#3b82f6",
-            button_color: "#667eea"
-        };
-
-        async function onConfigChange(config) {
-            const pageTitle = document.getElementById('page-title');
-            const schoolName = document.getElementById('school-name');
-            const quizButton = document.getElementById('quiz-button');
-            const footerCredit = document.getElementById('footer-credit');
-
-            if (pageTitle) {
-                pageTitle.textContent = config.page_title || defaultConfig.page_title;
-            }
-            if (schoolName) {
-                schoolName.textContent = config.school_name || defaultConfig.school_name;
-            }
-            if (quizButton) {
-                quizButton.textContent = config.quiz_button_text || defaultConfig.quiz_button_text;
-            }
-            if (footerCredit) {
-                footerCredit.textContent = config.footer_credit || defaultConfig.footer_credit;
-            }
-
-            const primaryColor = config.primary_color || defaultConfig.primary_color;
-            const secondaryColor = config.secondary_color || defaultConfig.secondary_color;
-            const textColor = config.text_color || defaultConfig.text_color;
-            const accentColor = config.accent_color || defaultConfig.accent_color;
-            const buttonColor = config.button_color || defaultConfig.button_color;
-
-            if (pageTitle) {
-                pageTitle.style.background = `linear-gradient(to right, ${primaryColor}, ${accentColor})`;
-                pageTitle.style.webkitBackgroundClip = 'text';
-                pageTitle.style.backgroundClip = 'text';
-                pageTitle.style.color = 'transparent';
-            }
-
-            document.querySelectorAll('h2, h3').forEach(heading => {
-                heading.style.color = primaryColor;
-            });
-
-            document.querySelectorAll('.card').forEach(card => {
-                card.style.backgroundColor = secondaryColor;
-            });
-
-            document.body.style.color = textColor;
-
-            if (quizButton) {
-                quizButton.style.background = `linear-gradient(135deg, ${buttonColor} 0%, ${primaryColor} 100%)`;
-            }
-        }
-
-        function mapToCapabilities(config) {
-            return {
-                recolorables: [
-                    {
-                        get: () => config.primary_color || defaultConfig.primary_color,
-                        set: (value) => {
-                            if (window.elementSdk) {
-                                window.elementSdk.config.primary_color = value;
-                                window.elementSdk.setConfig({ primary_color: value });
-                            }
-                        }
-                    },
-                    {
-                        get: () => config.secondary_color || defaultConfig.secondary_color,
-                        set: (value) => {
-                            if (window.elementSdk) {
-                                window.elementSdk.config.secondary_color = value;
-                                window.elementSdk.setConfig({ secondary_color: value });
-                            }
-                        }
-                    },
-                    {
-                        get: () => config.text_color || defaultConfig.text_color,
-                        set: (value) => {
-                            if (window.elementSdk) {
-                                window.elementSdk.config.text_color = value;
-                                window.elementSdk.setConfig({ text_color: value });
-                            }
-                        }
-                    },
-                    {
-                        get: () => config.accent_color || defaultConfig.accent_color,
-                        set: (value) => {
-                            if (window.elementSdk) {
-                                window.elementSdk.config.accent_color = value;
-                                window.elementSdk.setConfig({ accent_color: value });
-                            }
-                        }
-                    },
-                    {
-                        get: () => config.button_color || defaultConfig.button_color,
-                        set: (value) => {
-                            if (window.elementSdk) {
-                                window.elementSdk.config.button_color = value;
-                                window.elementSdk.setConfig({ button_color: value });
-                            }
-                        }
-                    }
-                ],
-                borderables: [],
-                fontEditable: undefined,
-                fontSizeable: undefined
-            };
-        }
-
-        function mapToEditPanelValues(config) {
-            return new Map([
-                ["page_title", config.page_title || defaultConfig.page_title],
-                ["school_name", config.school_name || defaultConfig.school_name],
-                ["quiz_button_text", config.quiz_button_text || defaultConfig.quiz_button_text],
-                ["footer_credit", config.footer_credit || defaultConfig.footer_credit]
-            ]);
-        }
-
-        if (window.elementSdk) {
-            window.elementSdk.init({
-                defaultConfig,
-                onConfigChange,
-                mapToCapabilities,
-                mapToEditPanelValues
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const elements = document.querySelectorAll('.fade-in');
-            elements.forEach((el, index) => {
-                el.style.animationDelay = `${index * 0.1}s`;
-            });
+    // Default Configuration
+    const defaultConfig = {
+      page_title: 'Barisan Geometri',
+      school_name: 'SMK Negeri 1 Pante Ceureumen',
+      footer_text: 'by @atengtransani',
+      background_color: '#1a1a2e',
+      accent_color: '#f72585',
+      text_color: '#ffffff',
+      card_color: 'rgba(255, 255, 255, 0.05)',
+      secondary_color: '#7209b7',
+      font_family: 'Poppins',
+      font_size: 16
+    };
+    
+    let config = { ...defaultConfig };
+    
+    // Toggle Accordion
+    function toggleAccordion(button) {
+      const accordionItem = button.closest('.accordion-item');
+      const content = accordionItem.querySelector('.accordion-content');
+      const arrow = button.querySelector('.accordion-arrow');
+      
+      const isOpen = content.classList.contains('open');
+      
+      // Close all other accordions
+      document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('open'));
+      document.querySelectorAll('.accordion-arrow').forEach(a => a.style.transform = 'rotate(0deg)');
+      
+      if (!isOpen) {
+        content.classList.add('open');
+        arrow.style.transform = 'rotate(180deg)';
+      }
+    }
+    
+    // Intersection Observer for scroll animations
+    function initScrollAnimations() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
         });
-    </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c7892a57214fdea',t:'MTc3MDAyMzYwOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+      }, { threshold: 0.1 });
+      
+      document.querySelectorAll('.section-reveal').forEach(section => {
+        observer.observe(section);
+      });
+    }
+    
+    // Apply configuration changes
+    async function onConfigChange(newConfig) {
+      const pageTitle = document.getElementById('page-title');
+      const schoolName = document.getElementById('school-name');
+      const footerText = document.getElementById('footer-text');
+      
+      if (pageTitle) {
+        pageTitle.textContent = newConfig.page_title || defaultConfig.page_title;
+      }
+      if (schoolName) {
+        schoolName.textContent = newConfig.school_name || defaultConfig.school_name;
+      }
+      if (footerText) {
+        footerText.textContent = newConfig.footer_text || defaultConfig.footer_text;
+      }
+      
+      // Apply font
+      const customFont = newConfig.font_family || defaultConfig.font_family;
+      document.querySelectorAll('.font-heading').forEach(el => {
+        el.style.fontFamily = `${customFont}, Poppins, sans-serif`;
+      });
+      
+      // Apply font size scaling
+      const baseSize = newConfig.font_size || defaultConfig.font_size;
+      document.documentElement.style.fontSize = `${baseSize}px`;
+    }
+    
+    // Map to capabilities for SDK
+    function mapToCapabilities(cfg) {
+      return {
+        recolorables: [
+          {
+            get: () => cfg.background_color || defaultConfig.background_color,
+            set: (value) => {
+              cfg.background_color = value;
+              window.elementSdk.setConfig({ background_color: value });
+            }
+          },
+          {
+            get: () => cfg.card_color || defaultConfig.card_color,
+            set: (value) => {
+              cfg.card_color = value;
+              window.elementSdk.setConfig({ card_color: value });
+            }
+          },
+          {
+            get: () => cfg.text_color || defaultConfig.text_color,
+            set: (value) => {
+              cfg.text_color = value;
+              window.elementSdk.setConfig({ text_color: value });
+            }
+          },
+          {
+            get: () => cfg.accent_color || defaultConfig.accent_color,
+            set: (value) => {
+              cfg.accent_color = value;
+              window.elementSdk.setConfig({ accent_color: value });
+            }
+          },
+          {
+            get: () => cfg.secondary_color || defaultConfig.secondary_color,
+            set: (value) => {
+              cfg.secondary_color = value;
+              window.elementSdk.setConfig({ secondary_color: value });
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => cfg.font_family || defaultConfig.font_family,
+          set: (value) => {
+            cfg.font_family = value;
+            window.elementSdk.setConfig({ font_family: value });
+          }
+        },
+        fontSizeable: {
+          get: () => cfg.font_size || defaultConfig.font_size,
+          set: (value) => {
+            cfg.font_size = value;
+            window.elementSdk.setConfig({ font_size: value });
+          }
+        }
+      };
+    }
+    
+    // Map to edit panel values
+    function mapToEditPanelValues(cfg) {
+      return new Map([
+        ['page_title', cfg.page_title || defaultConfig.page_title],
+        ['school_name', cfg.school_name || defaultConfig.school_name],
+        ['footer_text', cfg.footer_text || defaultConfig.footer_text]
+      ]);
+    }
+    
+    // Initialize
+    async function init() {
+      initScrollAnimations();
+      
+      if (window.elementSdk) {
+        await window.elementSdk.init({
+          defaultConfig,
+          onConfigChange,
+          mapToCapabilities,
+          mapToEditPanelValues
+        });
+        
+        config = window.elementSdk.config || defaultConfig;
+        await onConfigChange(config);
+      }
+    }
+    
+    init();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c78ae6a92c7a8cc',t:'MTc3MDAyNDc0Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
