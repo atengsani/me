@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="id" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kuis Barisan Geometri</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    * {
+      font-family: 'Poppins', sans-serif;
+    }
+    .gradient-bg {
+      background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 50%, #1e3a5f 100%);
+    }
+    .card-glass {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+    }
+    .option-btn {
+      transition: all 0.3s ease;
+    }
+    .option-btn:hover {
+      transform: translateX(8px);
+    }
+    .option-btn.selected {
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      color: white;
+      border-color: #1d4ed8;
+    }
+    .fade-in {
+      animation: fadeIn 0.5s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .pulse-badge {
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    .correct-answer {
+      background: linear-gradient(135deg, #22c55e, #16a34a) !important;
+      color: white !important;
+      border-color: #16a34a !important;
+    }
+    .wrong-answer {
+      background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+      color: white !important;
+      border-color: #dc2626 !important;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full gradient-bg">
+  <div id="app" class="h-full overflow-auto"><!-- Start Screen -->
+   <div id="startScreen" class="min-h-full flex items-center justify-center p-4">
+    <div class="card-glass rounded-3xl shadow-2xl p-6 md:p-10 max-w-2xl w-full fade-in">
+     <div class="text-center mb-8">
+      <h1 id="quizTitle" class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Kuis Barisan Geometri</h1>
+      <p id="subjectText" class="text-blue-600 font-medium">Matematika Kelas X SMK</p>
+     </div><!-- Ringkasan Materi -->
+     <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-5 mb-6 border border-blue-100">
+      <h2 class="font-bold text-gray-800 mb-3 flex items-center gap-2">
+       <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+       </svg> Ringkasan Materi</h2>
+      <div class="text-sm text-gray-700 space-y-2">
+       <p><strong>Barisan Geometri</strong> adalah barisan bilangan yang setiap sukunya diperoleh dari suku sebelumnya dengan mengalikan suatu bilangan tetap yang disebut <strong>rasio (r)</strong>.</p>
+       <p class="bg-white rounded-lg p-3 font-mono text-center border">U<sub>n</sub> = a × r<sup>(n-1)</sup></p>
+       <ul class="list-disc list-inside space-y-1 ml-2">
+        <li><strong>a</strong> = suku pertama</li>
+        <li><strong>r</strong> = rasio (U<sub>n</sub> / U<sub>n-1</sub>)</li>
+        <li><strong>n</strong> = nomor suku ke-n</li>
+        <li><strong>U<sub>n</sub></strong> = suku ke-n</li>
+       </ul>
+       <p class="mt-2"><strong>Contoh:</strong> 2, 6, 18, 54, ... (r = 3)</p>
+      </div>
+     </div><!-- Form Input -->
+     <div class="space-y-4 mb-6">
+      <div><label class="block text-sm font-medium text-gray-700 mb-2">Nama Lengkap</label> <input type="text" id="namaInput" placeholder="Masukkan nama lengkap" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all outline-none">
+      </div>
+      <div><label class="block text-sm font-medium text-gray-700 mb-2">Kelas</label> <input type="text" id="kelasInput" placeholder="Contoh: X TKJ 1" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all outline-none">
+      </div>
+     </div><button onclick="startQuiz()" class="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"> Mulai Kuis </button>
+     <p class="text-center text-gray-500 text-sm mt-4">10 Soal Pilihan Ganda • Waktu Tidak Terbatas</p>
+    </div>
+   </div><!-- Quiz Screen -->
+   <div id="quizScreen" class="min-h-full flex items-center justify-center p-4 hidden">
+    <div class="card-glass rounded-3xl shadow-2xl p-6 md:p-8 max-w-2xl w-full fade-in"><!-- Header -->
+     <div class="flex justify-between items-center mb-6">
+      <div class="flex items-center gap-3">
+       <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center text-white font-bold text-lg" id="questionNumber">
+        1
+       </div>
+       <div>
+        <p class="text-sm text-gray-500">Soal ke</p>
+        <p class="font-semibold text-gray-800"><span id="currentQ">1</span> dari 10</p>
+       </div>
+      </div>
+      <div class="text-right">
+       <p class="text-sm text-gray-500">Percobaan</p>
+       <p class="font-semibold text-blue-600" id="attemptCount">1</p>
+      </div>
+     </div><!-- Progress Bar -->
+     <div class="w-full h-2 bg-gray-200 rounded-full mb-6 overflow-hidden">
+      <div id="progressBar" class="h-full bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full transition-all duration-500" style="width: 10%"></div>
+     </div><!-- Question -->
+     <div class="mb-6">
+      <p id="questionText" class="text-lg font-medium text-gray-800 leading-relaxed"></p>
+     </div><!-- Options -->
+     <div id="optionsContainer" class="space-y-3 mb-6"></div><!-- Navigation -->
+     <div class="flex gap-3"><button onclick="prevQuestion()" id="prevBtn" class="flex-1 py-3 bg-gray-100 text-gray-700 font-medium rounded-xl hover:bg-gray-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed"> ← Sebelumnya </button> <button onclick="nextQuestion()" id="nextBtn" class="flex-1 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all"> Selanjutnya → </button>
+     </div>
+    </div>
+   </div><!-- Result Screen -->
+   <div id="resultScreen" class="min-h-full flex items-center justify-center p-4 hidden">
+    <div class="card-glass rounded-3xl shadow-2xl p-6 md:p-10 max-w-2xl w-full fade-in">
+     <div class="text-center mb-8">
+      <div id="resultIcon" class="inline-flex items-center justify-center w-24 h-24 rounded-full mb-4 pulse-badge"></div>
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Hasil Kuis</h2>
+      <p class="text-gray-600" id="resultName"></p>
+     </div><!-- Score Display -->
+     <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-6 mb-6 text-center">
+      <p class="text-gray-600 mb-2">Skor Anda</p>
+      <p class="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" id="finalScore">0</p>
+      <p class="text-gray-500 mt-2"><span id="correctCount">0</span> dari 10 soal benar</p>
+     </div><!-- Stats -->
+     <div class="grid grid-cols-2 gap-4 mb-6">
+      <div class="bg-gray-50 rounded-xl p-4 text-center">
+       <p class="text-2xl font-bold text-blue-600" id="totalAttempts">1</p>
+       <p class="text-sm text-gray-500">Total Percobaan</p>
+      </div>
+      <div class="bg-gray-50 rounded-xl p-4 text-center">
+       <p class="text-2xl font-bold text-indigo-600" id="gradeText">-</p>
+       <p class="text-sm text-gray-500">Predikat</p>
+      </div>
+     </div><!-- Pembahasan (Hidden until 10 attempts) -->
+     <div id="pembahasanSection" class="hidden mb-6">
+      <h3 class="font-bold text-gray-800 mb-4 flex items-center gap-2">
+       <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+       </svg> Pembahasan Soal</h3>
+      <div id="pembahasanContainer" class="space-y-4 max-h-96 overflow-y-auto pr-2"></div>
+     </div>
+     <div class="flex gap-3"><button onclick="retryQuiz()" class="flex-1 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all"> Coba Lagi </button> <button onclick="resetAll()" class="flex-1 py-4 bg-gray-100 text-gray-700 font-semibold rounded-xl hover:bg-gray-200 transition-all"> Mulai Baru </button>
+     </div>
+    </div>
+   </div><!-- Footer -->
+   <footer class="py-4 text-center text-white/70 text-sm">
+    by@atengtransani
+   </footer>
+  </div>
+  <script>
+    // Default Config
+    const defaultConfig = {
+      quiz_title: 'Kuis Barisan Geometri',
+      subject_text: 'Matematika Kelas X SMK'
+    };
+
+    let config = { ...defaultConfig };
+
+    // Quiz State
+    let userName = '';
+    let userClass = '';
+    let currentQuestion = 0;
+    let userAnswers = [];
+    let attemptCount = 1;
+    let shuffledQuestions = [];
+
+    // Original Questions Bank
+    const questionsBank = [
+      {
+        question: "Diketahui barisan geometri 3, 6, 12, 24, ... Berapakah rasio barisan tersebut?",
+        options: ["r = 2", "r = 3", "r = 4", "r = 6", "r = 12"],
+        correct: 0,
+        difficulty: "mudah",
+        pembahasan: "Rasio (r) = U₂/U₁ = 6/3 = 2. Barisan ini memiliki rasio 2 karena setiap suku dikalikan 2 untuk mendapatkan suku berikutnya."
+      },
+      {
+        question: "Suku ke-5 dari barisan geometri 2, 6, 18, ... adalah?",
+        options: ["54", "108", "162", "324", "486"],
+        correct: 2,
+        difficulty: "sedang",
+        pembahasan: "a = 2, r = 6/2 = 3. U₅ = a × r⁴ = 2 × 3⁴ = 2 × 81 = 162"
+      },
+      {
+        question: "Jika suku pertama barisan geometri adalah 4 dan rasionya 3, maka suku ke-4 adalah?",
+        options: ["36", "64", "108", "144", "324"],
+        correct: 2,
+        difficulty: "mudah",
+        pembahasan: "U₄ = a × r³ = 4 × 3³ = 4 × 27 = 108"
+      },
+      {
+        question: "Barisan 81, 27, 9, 3, ... memiliki rasio?",
+        options: ["r = 3", "r = 1/3", "r = -3", "r = 9", "r = -1/3"],
+        correct: 1,
+        difficulty: "mudah",
+        pembahasan: "r = U₂/U₁ = 27/81 = 1/3. Ini adalah barisan geometri menurun dengan rasio pecahan."
+      },
+      {
+        question: "Suku ke-6 dari barisan geometri dengan a = 2 dan r = 2 adalah?",
+        options: ["16", "32", "64", "128", "256"],
+        correct: 2,
+        difficulty: "sedang",
+        pembahasan: "U₆ = a × r⁵ = 2 × 2⁵ = 2 × 32 = 64"
+      },
+      {
+        question: "Diketahui barisan geometri dengan U₃ = 12 dan U₆ = 96. Nilai rasio barisan tersebut adalah?",
+        options: ["r = 2", "r = 3", "r = 4", "r = 8", "r = 6"],
+        correct: 0,
+        difficulty: "sulit",
+        pembahasan: "U₆/U₃ = ar⁵/ar² = r³ = 96/12 = 8. Maka r = ∛8 = 2"
+      },
+      {
+        question: "Tiga suku pertama barisan geometri adalah 4, x, 16. Nilai x adalah?",
+        options: ["6", "8", "10", "12", "14"],
+        correct: 1,
+        difficulty: "sedang",
+        pembahasan: "Dalam barisan geometri, x² = 4 × 16 = 64. Maka x = √64 = 8"
+      },
+      {
+        question: "Jika U₂ = 10 dan U₄ = 40, maka suku pertama barisan geometri tersebut adalah?",
+        options: ["2", "4", "5", "8", "10"],
+        correct: 2,
+        difficulty: "sulit",
+        pembahasan: "U₄/U₂ = ar³/ar = r² = 40/10 = 4, maka r = 2. U₂ = ar = 10, sehingga a = 10/2 = 5"
+      },
+      {
+        question: "Barisan geometri memiliki suku pertama 3 dan suku ke-4 adalah 81. Rasio barisan tersebut adalah?",
+        options: ["r = 2", "r = 3", "r = 4", "r = 9", "r = 27"],
+        correct: 1,
+        difficulty: "sedang",
+        pembahasan: "U₄ = ar³ = 81. Maka 3 × r³ = 81, r³ = 27, r = 3"
+      },
+      {
+        question: "Suku ke-n dari barisan geometri 5, 10, 20, 40, ... dinyatakan dengan rumus?",
+        options: ["Uₙ = 5 × 2ⁿ", "Uₙ = 5 × 2ⁿ⁻¹", "Uₙ = 10 × 2ⁿ⁻¹", "Uₙ = 5 × 2ⁿ⁺¹", "Uₙ = 2 × 5ⁿ⁻¹"],
+        correct: 1,
+        difficulty: "sedang",
+        pembahasan: "a = 5, r = 10/5 = 2. Rumus suku ke-n: Uₙ = a × rⁿ⁻¹ = 5 × 2ⁿ⁻¹"
+      }
+    ];
+
+    // Shuffle array function
+    function shuffleArray(array) {
+      const shuffled = [...array];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    }
+
+    // Shuffle options for a question
+    function shuffleOptions(question) {
+      const optionIndices = question.options.map((opt, idx) => ({ opt, isCorrect: idx === question.correct }));
+      const shuffledOptions = shuffleArray(optionIndices);
+      const newCorrectIndex = shuffledOptions.findIndex(item => item.isCorrect);
+      
+      return {
+        ...question,
+        options: shuffledOptions.map(item => item.opt),
+        correct: newCorrectIndex,
+        originalQuestion: question
+      };
+    }
+
+    // Initialize shuffled questions
+    function initializeQuestions() {
+      shuffledQuestions = shuffleArray(questionsBank).map(q => shuffleOptions(q));
+      userAnswers = new Array(10).fill(null);
+    }
+
+    // Start Quiz
+    function startQuiz() {
+      userName = document.getElementById('namaInput').value.trim();
+      userClass = document.getElementById('kelasInput').value.trim();
+
+      if (!userName || !userClass) {
+        showInlineError('Mohon isi nama lengkap dan kelas terlebih dahulu!');
+        return;
+      }
+
+      initializeQuestions();
+      currentQuestion = 0;
+      
+      document.getElementById('startScreen').classList.add('hidden');
+      document.getElementById('quizScreen').classList.remove('hidden');
+      document.getElementById('attemptCount').textContent = attemptCount;
+      
+      renderQuestion();
+    }
+
+    // Show inline error message
+    function showInlineError(message) {
+      let errorDiv = document.getElementById('inlineError');
+      if (!errorDiv) {
+        errorDiv = document.createElement('div');
+        errorDiv.id = 'inlineError';
+        errorDiv.className = 'bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl mb-4 fade-in';
+        const form = document.querySelector('#startScreen .space-y-4');
+        form.parentNode.insertBefore(errorDiv, form);
+      }
+      errorDiv.textContent = message;
+      setTimeout(() => {
+        if (errorDiv) errorDiv.remove();
+      }, 3000);
+    }
+
+    // Render current question
+    function renderQuestion() {
+      const q = shuffledQuestions[currentQuestion];
+      
+      document.getElementById('questionNumber').textContent = currentQuestion + 1;
+      document.getElementById('currentQ').textContent = currentQuestion + 1;
+      document.getElementById('questionText').textContent = q.question;
+      document.getElementById('progressBar').style.width = `${((currentQuestion + 1) / 10) * 100}%`;
+
+      const optionsContainer = document.getElementById('optionsContainer');
+      optionsContainer.innerHTML = '';
+
+      const optionLabels = ['A', 'B', 'C', 'D', 'E'];
+      q.options.forEach((option, index) => {
+        const isSelected = userAnswers[currentQuestion] === index;
+        const btn = document.createElement('button');
+        btn.className = `option-btn w-full p-4 text-left rounded-xl border-2 ${isSelected ? 'selected' : 'border-gray-200 hover:border-blue-400 bg-white'}`;
+        btn.innerHTML = `
+          <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg ${isSelected ? 'bg-white/20' : 'bg-blue-100'} ${isSelected ? 'text-white' : 'text-blue-600'} font-semibold mr-3">${optionLabels[index]}</span>
+          <span class="${isSelected ? 'text-white' : 'text-gray-700'}">${option}</span>
+        `;
+        btn.onclick = () => selectOption(index);
+        optionsContainer.appendChild(btn);
+      });
+
+      // Update navigation buttons
+      document.getElementById('prevBtn').disabled = currentQuestion === 0;
+      document.getElementById('nextBtn').textContent = currentQuestion === 9 ? 'Selesai' : 'Selanjutnya →';
+    }
+
+    // Select option
+    function selectOption(index) {
+      userAnswers[currentQuestion] = index;
+      renderQuestion();
+    }
+
+    // Previous question
+    function prevQuestion() {
+      if (currentQuestion > 0) {
+        currentQuestion--;
+        renderQuestion();
+      }
+    }
+
+    // Next question
+    function nextQuestion() {
+      if (currentQuestion < 9) {
+        currentQuestion++;
+        renderQuestion();
+      } else {
+        showResults();
+      }
+    }
+
+    // Show results
+    function showResults() {
+      let correctCount = 0;
+      shuffledQuestions.forEach((q, idx) => {
+        if (userAnswers[idx] === q.correct) {
+          correctCount++;
+        }
+      });
+
+      const score = correctCount * 10;
+      let grade = '';
+      let iconClass = '';
+      let iconSvg = '';
+
+      if (score >= 90) {
+        grade = 'A (Sangat Baik)';
+        iconClass = 'bg-gradient-to-br from-green-400 to-green-600';
+        iconSvg = '<svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>';
+      } else if (score >= 80) {
+        grade = 'B (Baik)';
+        iconClass = 'bg-gradient-to-br from-blue-400 to-blue-600';
+        iconSvg = '<svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>';
+      } else if (score >= 70) {
+        grade = 'C (Cukup)';
+        iconClass = 'bg-gradient-to-br from-yellow-400 to-yellow-600';
+        iconSvg = '<svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>';
+      } else {
+        grade = 'D (Perlu Belajar Lagi)';
+        iconClass = 'bg-gradient-to-br from-red-400 to-red-600';
+        iconSvg = '<svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>';
+      }
+
+      document.getElementById('resultIcon').className = `inline-flex items-center justify-center w-24 h-24 rounded-full mb-4 pulse-badge ${iconClass}`;
+      document.getElementById('resultIcon').innerHTML = iconSvg;
+      document.getElementById('resultName').textContent = `${userName} - ${userClass}`;
+      document.getElementById('finalScore').textContent = score;
+      document.getElementById('correctCount').textContent = correctCount;
+      document.getElementById('totalAttempts').textContent = attemptCount;
+      document.getElementById('gradeText').textContent = grade.split(' ')[0];
+
+      // Show pembahasan if attempts >= 10
+      if (attemptCount >= 10) {
+        showPembahasan();
+      } else {
+        document.getElementById('pembahasanSection').classList.add('hidden');
+      }
+
+      document.getElementById('quizScreen').classList.add('hidden');
+      document.getElementById('resultScreen').classList.remove('hidden');
+    }
+
+    // Show pembahasan
+    function showPembahasan() {
+      const container = document.getElementById('pembahasanContainer');
+      container.innerHTML = '';
+
+      shuffledQuestions.forEach((q, idx) => {
+        const isCorrect = userAnswers[idx] === q.correct;
+        const optionLabels = ['A', 'B', 'C', 'D', 'E'];
+        
+        const div = document.createElement('div');
+        div.className = `p-4 rounded-xl border-2 ${isCorrect ? 'border-green-200 bg-green-50' : 'border-red-200 bg-red-50'}`;
+        div.innerHTML = `
+          <p class="font-medium text-gray-800 mb-2"><span class="font-bold">Soal ${idx + 1}:</span> ${q.question}</p>
+          <p class="text-sm ${isCorrect ? 'text-green-700' : 'text-red-700'} mb-1">
+            Jawaban Anda: ${userAnswers[idx] !== null ? optionLabels[userAnswers[idx]] + '. ' + q.options[userAnswers[idx]] : 'Tidak dijawab'} 
+            ${isCorrect ? '✓' : '✗'}
+          </p>
+          ${!isCorrect ? `<p class="text-sm text-green-700 mb-1">Jawaban Benar: ${optionLabels[q.correct]}. ${q.options[q.correct]}</p>` : ''}
+          <p class="text-sm text-gray-600 mt-2 p-2 bg-white rounded-lg"><strong>Pembahasan:</strong> ${q.pembahasan}</p>
+        `;
+        container.appendChild(div);
+      });
+
+      document.getElementById('pembahasanSection').classList.remove('hidden');
+    }
+
+    // Retry quiz (same user, new shuffle)
+    function retryQuiz() {
+      attemptCount++;
+      initializeQuestions();
+      currentQuestion = 0;
+      
+      document.getElementById('resultScreen').classList.add('hidden');
+      document.getElementById('quizScreen').classList.remove('hidden');
+      document.getElementById('attemptCount').textContent = attemptCount;
+      
+      renderQuestion();
+    }
+
+    // Reset all (new user)
+    function resetAll() {
+      attemptCount = 1;
+      userName = '';
+      userClass = '';
+      document.getElementById('namaInput').value = '';
+      document.getElementById('kelasInput').value = '';
+      
+      document.getElementById('resultScreen').classList.add('hidden');
+      document.getElementById('startScreen').classList.remove('hidden');
+    }
+
+    // Element SDK Integration
+    async function onConfigChange(newConfig) {
+      config = { ...defaultConfig, ...newConfig };
+      
+      const titleEl = document.getElementById('quizTitle');
+      const subjectEl = document.getElementById('subjectText');
+      
+      if (titleEl) titleEl.textContent = config.quiz_title || defaultConfig.quiz_title;
+      if (subjectEl) subjectEl.textContent = config.subject_text || defaultConfig.subject_text;
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [],
+        borderables: [],
+        fontEditable: undefined,
+        fontSizeable: undefined
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ['quiz_title', config.quiz_title || defaultConfig.quiz_title],
+        ['subject_text', config.subject_text || defaultConfig.subject_text]
+      ]);
+    }
+
+    // Initialize SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c78a1b5703da8cc',t:'MTc3MDAyNDIyNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
