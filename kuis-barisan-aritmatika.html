@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="id" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kuis Barisan Aritmatika</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .quiz-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    .option-btn {
+      transition: all 0.3s ease;
+    }
+    
+    .option-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    }
+    
+    .option-selected {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+      border-color: #f5576c !important;
+      color: white !important;
+      transform: scale(1.02);
+    }
+    
+    .correct-answer {
+      background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%) !important;
+      border-color: #38ef7d !important;
+      color: white !important;
+      transform: scale(1.02);
+    }
+    
+    .wrong-answer {
+      background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%) !important;
+      border-color: #f45c43 !important;
+      color: white !important;
+      transform: scale(1.02);
+    }
+    
+    .progress-bar {
+      transition: width 0.5s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.5s ease forwards;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    .pulse {
+      animation: pulse 0.5s ease;
+    }
+    
+    @keyframes confetti {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-100px) rotate(720deg); opacity: 0; }
+    }
+    
+    .confetti {
+      animation: confetti 1s ease forwards;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800 overflow-auto">
+  <div id="app" class="w-full min-h-full p-4 md:p-8"><!-- Start Screen -->
+   <div id="start-screen" class="max-w-2xl mx-auto fade-in">
+    <div class="text-center mb-8">
+     <div class="inline-block p-4 bg-white/10 backdrop-blur-sm rounded-full mb-6">
+      <svg class="w-16 h-16 text-yellow-400" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+      </svg>
+     </div>
+     <h1 id="main-title" class="text-3xl md:text-4xl font-extrabold text-white mb-3">Kuis Barisan Aritmatika</h1>
+     <p id="subject-info" class="text-purple-200 text-lg">Matematika Kelas X SMK</p>
+    </div>
+    <div class="bg-white/10 backdrop-blur-md rounded-3xl p-6 md:p-8 mb-6">
+     <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">📚 Materi yang Diujikan</h2>
+     <ul class="space-y-3 text-purple-100">
+      <li class="flex items-start gap-3"><span class="bg-yellow-400 text-purple-900 rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0">1</span> <span>Menentukan <strong>suku ke-n (Uₙ)</strong> barisan aritmatika</span></li>
+      <li class="flex items-start gap-3"><span class="bg-yellow-400 text-purple-900 rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0">2</span> <span>Menentukan <strong>beda (b)</strong> barisan aritmatika</span></li>
+      <li class="flex items-start gap-3"><span class="bg-yellow-400 text-purple-900 rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0">3</span> <span>Menentukan <strong>suku pertama (a)</strong> barisan aritmatika</span></li>
+     </ul>
+     <div class="mt-6 p-4 bg-white/10 rounded-xl">
+      <p class="text-yellow-300 font-semibold mb-2">📐 Rumus Penting:</p>
+      <p class="text-white text-lg font-mono bg-purple-900/50 p-3 rounded-lg text-center">Uₙ = a + (n - 1) × b</p>
+      <p class="text-purple-200 text-sm mt-2">Dimana: Uₙ = suku ke-n, a = suku pertama, b = beda, n = nomor suku</p>
+     </div>
+    </div><!-- Form Identitas -->
+    <form id="identity-form" class="bg-white/10 backdrop-blur-md rounded-3xl p-6 md:p-8 mb-6">
+     <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">👤 Data Siswa</h2>
+     <div class="space-y-4">
+      <div><label for="student-name" class="block text-purple-100 font-medium mb-2">Nama Lengkap</label> <input type="text" id="student-name" required placeholder="Masukkan nama lengkap" class="w-full px-4 py-3 rounded-xl bg-white/10 border-2 border-white/20 text-white placeholder-purple-300 focus:outline-none focus:border-yellow-400 transition-colors">
+      </div>
+      <div><label for="student-class" class="block text-purple-100 font-medium mb-2">Kelas</label> <input type="text" id="student-class" required placeholder="Contoh: X TKJ 1" class="w-full px-4 py-3 rounded-xl bg-white/10 border-2 border-white/20 text-white placeholder-purple-300 focus:outline-none focus:border-yellow-400 transition-colors">
+      </div>
+     </div>
+    </form>
+    <div class="bg-white/10 backdrop-blur-md rounded-3xl p-6 mb-6">
+     <div class="flex items-center justify-between text-purple-100">
+      <div class="flex items-center gap-2"><span class="text-2xl">❓</span> <span>Jumlah Soal</span>
+      </div><span class="text-2xl font-bold text-yellow-400">10</span>
+     </div>
+    </div><button type="button" id="start-btn" class="w-full py-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-purple-900 font-bold text-xl rounded-2xl hover:from-yellow-300 hover:to-orange-400 transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-lg"> 🚀 Mulai Kuis </button>
+   </div><!-- Quiz Screen -->
+   <div id="quiz-screen" class="max-w-2xl mx-auto hidden"><!-- Student Info Display -->
+    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 mb-4 flex items-center justify-between">
+     <div class="flex items-center gap-3">
+      <div class="bg-yellow-400 rounded-full w-10 h-10 flex items-center justify-center text-purple-900 font-bold text-lg"><span id="student-initial">?</span>
+      </div>
+      <div>
+       <p class="text-white font-semibold" id="display-name">-</p>
+       <p class="text-purple-200 text-sm" id="display-class">-</p>
+      </div>
+     </div>
+    </div><!-- Progress -->
+    <div class="mb-6">
+     <div class="flex justify-between items-center text-white mb-2"><span class="font-semibold">Soal <span id="current-q">1</span> dari 10</span>
+     </div>
+     <div class="h-3 bg-white/20 rounded-full overflow-hidden">
+      <div id="progress-bar" class="h-full bg-gradient-to-r from-yellow-400 to-orange-500 progress-bar" style="width: 10%"></div>
+     </div>
+    </div><!-- Question Card -->
+    <div class="quiz-card rounded-3xl p-6 md:p-8 mb-6 shadow-2xl">
+     <div class="flex items-center gap-2 mb-4"><span id="question-type" class="bg-white/20 px-3 py-1 rounded-full text-sm text-white font-medium"></span>
+     </div>
+     <p id="question-text" class="text-white text-lg md:text-xl font-semibold leading-relaxed"></p>
+    </div><!-- Options -->
+    <div id="options-container" class="space-y-3 mb-6"></div><!-- Feedback -->
+    <div id="feedback" class="hidden bg-white/10 backdrop-blur-md rounded-2xl p-4 mb-6">
+     <p id="feedback-text" class="text-white font-medium"></p>
+    </div><!-- Next Button --> <button id="next-btn" class="hidden w-full py-4 bg-gradient-to-r from-emerald-400 to-cyan-500 text-white font-bold text-lg rounded-2xl hover:from-emerald-300 hover:to-cyan-400 transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-lg"> Soal Berikutnya → </button>
+   </div><!-- Result Screen -->
+   <div id="result-screen" class="max-w-2xl mx-auto hidden fade-in">
+    <div class="bg-white/10 backdrop-blur-md rounded-3xl p-8 text-center">
+     <div class="bg-white/10 rounded-2xl p-4 mb-6">
+      <p class="text-purple-200 text-sm mb-1">Nama Siswa</p>
+      <p class="text-white font-bold text-lg" id="result-name">-</p>
+      <p class="text-purple-200 text-sm" id="result-class">-</p>
+     </div>
+     <div id="result-emoji" class="text-8xl mb-4"></div>
+     <h2 id="result-title" class="text-3xl font-extrabold text-white mb-2"></h2>
+     <p id="result-message" class="text-purple-200 text-lg mb-6"></p>
+     <div class="bg-white/10 rounded-2xl p-6 mb-6">
+      <p class="text-purple-200 mb-2">Skor Akhir</p>
+      <p id="final-score" class="text-6xl font-extrabold text-yellow-400"></p>
+      <p class="text-purple-200 mt-2">dari 100 poin</p>
+     </div>
+     <div class="grid grid-cols-2 gap-4 mb-4">
+      <div class="bg-emerald-500/20 rounded-xl p-4">
+       <p class="text-emerald-300 text-sm">Benar</p>
+       <p id="correct-count" class="text-3xl font-bold text-emerald-400"></p>
+      </div>
+      <div class="bg-red-500/20 rounded-xl p-4">
+       <p class="text-red-300 text-sm">Salah</p>
+       <p id="wrong-count" class="text-3xl font-bold text-red-400"></p>
+      </div>
+     </div>
+     <div class="bg-purple-500/20 rounded-xl p-4 mb-6">
+      <p class="text-purple-300 text-sm">Percobaan Ke-</p>
+      <p id="attempt-count" class="text-3xl font-bold text-purple-400"></p>
+     </div><button id="retry-btn" class="w-full py-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-purple-900 font-bold text-xl rounded-2xl hover:from-yellow-300 hover:to-orange-400 transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-lg"> ��� Ulangi Kuis </button>
+    </div><!-- Review Section -->
+    <div id="review-section" class="mt-6 bg-white/10 backdrop-blur-md rounded-3xl p-6 md:p-8 hidden">
+     <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-2">📝 Pembahasan Soal</h2>
+     <div id="review-container" class="space-y-4"></div>
+    </div>
+   </div>
+  </div>
+  <script>
+    const defaultConfig = {
+      quiz_title: 'Kuis Barisan Aritmatika',
+      subject_info: 'Matematika Kelas X SMK'
+    };
+
+    let config = { ...defaultConfig };
+
+    // Quiz Data
+    const questions = [
+      {
+        type: "Menentukan Suku ke-n",
+        question: "Diketahui barisan aritmatika: 3, 7, 11, 15, ... Tentukan suku ke-10 (U₁₀) dari barisan tersebut!",
+        options: ["39", "43", "47", "51"],
+        correct: 0,
+        explanation: "Diketahui: a = 3, b = 7 - 3 = 4. Rumus: U₁₀ = a + (n-1) × b = 3 + (10-1) × 4 = 3 + 36 = 39"
+      },
+      {
+        type: "Menentukan Beda",
+        question: "Suatu barisan aritmatika memiliki suku ke-3 adalah 10 dan suku ke-7 adalah 22. Berapakah beda (b) dari barisan tersebut?",
+        options: ["2", "3", "4", "5"],
+        correct: 1,
+        explanation: "U₇ - U₃ = (7-3) × b, maka 22 - 10 = 4b, sehingga 12 = 4b, jadi b = 3"
+      },
+      {
+        type: "Menentukan Suku Pertama",
+        question: "Suku ke-5 suatu barisan aritmatika adalah 23 dan bedanya adalah 4. Tentukan suku pertama (a) dari barisan tersebut!",
+        options: ["5", "7", "9", "11"],
+        correct: 1,
+        explanation: "Rumus: U₅ = a + (5-1) × b, maka 23 = a + 4 × 4, sehingga 23 = a + 16, jadi a = 7"
+      },
+      {
+        type: "Menentukan Suku ke-n",
+        question: "Diketahui barisan aritmatika: 5, 9, 13, 17, ... Tentukan suku ke-15 dari barisan tersebut!",
+        options: ["57", "61", "65", "69"],
+        correct: 1,
+        explanation: "Diketahui: a = 5, b = 9 - 5 = 4. Rumus: U₁₅ = 5 + (15-1) × 4 = 5 + 56 = 61"
+      },
+      {
+        type: "Menentukan Beda",
+        question: "Jika suku pertama suatu barisan aritmatika adalah 8 dan suku ke-10 adalah 35, maka beda (b) dari barisan tersebut adalah...",
+        options: ["2", "3", "4", "5"],
+        correct: 1,
+        explanation: "Rumus: U₁₀ = U₁ + 9b, maka 35 = 8 + 9b, sehingga 9b = 27, jadi b = 3"
+      },
+      {
+        type: "Menentukan Suku Pertama",
+        question: "Suku ke-8 suatu barisan aritmatika adalah 31 dan bedanya adalah 5. Berapakah suku pertama (a) dari barisan tersebut?",
+        options: ["-2", "-4", "2", "4"],
+        correct: 1,
+        explanation: "Rumus: U₈ = a + (8-1) × b, maka 31 = a + 7 × 5, sehingga 31 = a + 35, jadi a = -4"
+      },
+      {
+        type: "Menentukan Suku ke-n",
+        question: "Suatu barisan aritmatika diketahui suku pertama (a) = 2 dan beda (b) = 6. Tentukan nilai suku ke-20 (U₂₀) dari barisan tersebut!",
+        options: ["110", "116", "122", "128"],
+        correct: 1,
+        explanation: "Rumus: U₂₀ = a + (n-1) × b = 2 + (20-1) × 6 = 2 + 19 × 6 = 2 + 114 = 116"
+      },
+      {
+        type: "Menentukan Beda",
+        question: "Diketahui barisan aritmatika: 50, 47, 44, 41, ... Berapakah beda (b) dari barisan tersebut?",
+        options: ["-3", "3", "-4", "4"],
+        correct: 0,
+        explanation: "Beda (b) = suku kedua - suku pertama = 47 - 50 = -3"
+      },
+      {
+        type: "Menentukan Suku Pertama",
+        question: "Suatu barisan aritmatika memiliki U₆ = 28 dan U₁₂ = 52. Tentukan suku pertama (a) dari barisan tersebut!",
+        options: ["6", "8", "10", "12"],
+        correct: 1,
+        explanation: "Cari beda: b = (U₁₂ - U₆)/(12-6) = (52-28)/6 = 4. Kemudian: U₆ = a + 5b, maka 28 = a + 5 × 4, sehingga a = 8"
+      },
+      {
+        type: "Menentukan Suku ke-n",
+        question: "Suku pertama suatu barisan aritmatika adalah -3 dan bedanya adalah 7. Tentukan suku ke-12 dari barisan tersebut!",
+        options: ["71", "74", "77", "80"],
+        correct: 1,
+        explanation: "Rumus: U₁₂ = a + (n-1) × b = -3 + (12-1) × 7 = -3 + 77 = 74"
+      }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let studentName = '';
+    let studentClass = '';
+    let attemptCount = 0;
+    let selectedAnswerIndex = null;
+
+    // DOM Elements
+    const startScreen = document.getElementById('start-screen');
+    const quizScreen = document.getElementById('quiz-screen');
+    const resultScreen = document.getElementById('result-screen');
+    const identityForm = document.getElementById('identity-form');
+    const studentNameInput = document.getElementById('student-name');
+    const studentClassInput = document.getElementById('student-class');
+    const startBtn = document.getElementById('start-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const retryBtn = document.getElementById('retry-btn');
+    const optionsContainer = document.getElementById('options-container');
+    const questionText = document.getElementById('question-text');
+    const questionType = document.getElementById('question-type');
+    const feedback = document.getElementById('feedback');
+    const feedbackText = document.getElementById('feedback-text');
+    const progressBar = document.getElementById('progress-bar');
+    const currentQDisplay = document.getElementById('current-q');
+    const scoreDisplay = document.getElementById('score');
+
+    function shuffleArray(array) {
+      const shuffled = [...array];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    }
+
+    let shuffledQuestions = [];
+
+    function startQuiz(event) {
+      event.preventDefault();
+      
+      studentName = studentNameInput.value.trim();
+      studentClass = studentClassInput.value.trim();
+      
+      if (!studentName || !studentClass) {
+        return;
+      }
+      
+      // Display student info
+      document.getElementById('display-name').textContent = studentName;
+      document.getElementById('display-class').textContent = studentClass;
+      document.getElementById('student-initial').textContent = studentName.charAt(0).toUpperCase();
+      
+      shuffledQuestions = shuffleArray(questions);
+      currentQuestion = 0;
+      score = 0;
+      userAnswers = [];
+      selectedAnswerIndex = null;
+      attemptCount++;
+      scoreDisplay.textContent = '0';
+      startScreen.classList.add('hidden');
+      resultScreen.classList.add('hidden');
+      quizScreen.classList.remove('hidden');
+      quizScreen.classList.add('fade-in');
+      loadQuestion();
+    }
+
+    function loadQuestion() {
+      answered = false;
+      const q = shuffledQuestions[currentQuestion];
+      
+      questionType.textContent = q.type;
+      questionText.textContent = q.question;
+      currentQDisplay.textContent = currentQuestion + 1;
+      progressBar.style.width = ((currentQuestion + 1) / questions.length * 100) + '%';
+      
+      // Shuffle options and track correct answer
+      const optionsWithIndex = q.options.map((opt, idx) => ({ text: opt, originalIndex: idx }));
+      const shuffledOptions = shuffleArray(optionsWithIndex);
+      
+      // Find new position of correct answer
+      const newCorrectIndex = shuffledOptions.findIndex(opt => opt.originalIndex === q.correct);
+      q.shuffledCorrect = newCorrectIndex;
+      q.shuffledOptions = shuffledOptions.map(opt => opt.text);
+      
+      optionsContainer.innerHTML = '';
+      shuffledOptions.forEach((option, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn w-full p-4 bg-white/10 backdrop-blur-sm text-white text-left rounded-xl border-2 border-transparent hover:border-yellow-400 hover:bg-white/20 font-medium';
+        btn.innerHTML = `<span class="inline-block w-8 h-8 bg-white/20 rounded-full text-center leading-8 mr-3 font-bold">${String.fromCharCode(65 + index)}</span>${option.text}`;
+        btn.onclick = () => selectAnswer(index);
+        optionsContainer.appendChild(btn);
+      });
+      
+      feedback.classList.add('hidden');
+      nextBtn.classList.add('hidden');
+    }
+
+    let userAnswers = [];
+
+    function selectAnswer(selected) {
+      const q = shuffledQuestions[currentQuestion];
+      const buttons = optionsContainer.querySelectorAll('button');
+      
+      // Remove previous selection highlight
+      buttons.forEach(btn => {
+        btn.classList.remove('option-selected');
+      });
+      
+      // Highlight new selection
+      buttons[selected].classList.add('option-selected');
+      selectedAnswerIndex = selected;
+      
+      // Show next button
+      if (currentQuestion < questions.length - 1) {
+        nextBtn.textContent = 'Soal Berikutnya →';
+      } else {
+        nextBtn.textContent = 'Lihat Hasil 🎯';
+      }
+      nextBtn.classList.remove('hidden');
+    }
+
+    function nextQuestion() {
+      // Save the answer when moving to next question
+      if (selectedAnswerIndex !== null) {
+        const q = shuffledQuestions[currentQuestion];
+        const isCorrect = selectedAnswerIndex === q.shuffledCorrect;
+        
+        userAnswers.push({
+          question: q.question,
+          type: q.type,
+          options: q.shuffledOptions,
+          userAnswer: selectedAnswerIndex,
+          correctAnswer: q.shuffledCorrect,
+          explanation: q.explanation,
+          isCorrect: isCorrect
+        });
+        
+        if (isCorrect) {
+          score += 10;
+          scoreDisplay.textContent = score;
+        }
+        
+        selectedAnswerIndex = null;
+      }
+      
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        loadQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    function showResult() {
+      quizScreen.classList.add('hidden');
+      resultScreen.classList.remove('hidden');
+      resultScreen.classList.add('fade-in');
+      
+      // Display student info in result
+      document.getElementById('result-name').textContent = studentName;
+      document.getElementById('result-class').textContent = studentClass;
+      
+      const percentage = score;
+      const correctAnswers = score / 10;
+      const wrongAnswers = 10 - correctAnswers;
+      
+      document.getElementById('final-score').textContent = percentage;
+      document.getElementById('correct-count').textContent = correctAnswers;
+      document.getElementById('wrong-count').textContent = wrongAnswers;
+      document.getElementById('attempt-count').textContent = attemptCount;
+      
+      const resultEmoji = document.getElementById('result-emoji');
+      const resultTitle = document.getElementById('result-title');
+      const resultMessage = document.getElementById('result-message');
+      
+      if (percentage >= 80) {
+        resultEmoji.textContent = '🏆';
+        resultTitle.textContent = 'Luar Biasa!';
+        resultMessage.textContent = 'Kamu sudah menguasai materi barisan aritmatika dengan sangat baik!';
+      } else if (percentage >= 60) {
+        resultEmoji.textContent = '👍';
+        resultTitle.textContent = 'Bagus!';
+        resultMessage.textContent = 'Pemahaman kamu sudah baik, terus tingkatkan lagi ya!';
+      } else if (percentage >= 40) {
+        resultEmoji.textContent = '💪';
+        resultTitle.textContent = 'Cukup Baik';
+        resultMessage.textContent = 'Ayo pelajari lagi materinya dan coba kuis ini sekali lagi!';
+      } else {
+        resultEmoji.textContent = '📚';
+        resultTitle.textContent = 'Tetap Semangat!';
+        resultMessage.textContent = 'Jangan menyerah! Pelajari kembali rumus Uₙ = a + (n-1)b';
+      }
+      
+      // Display review only on 10th attempt
+      if (attemptCount >= 10) {
+        document.getElementById('review-section').classList.remove('hidden');
+        displayReview();
+      } else {
+        document.getElementById('review-section').classList.add('hidden');
+      }
+    }
+    
+    function displayReview() {
+      const reviewContainer = document.getElementById('review-container');
+      reviewContainer.innerHTML = '';
+      
+      userAnswers.forEach((answer, index) => {
+        const reviewItem = document.createElement('div');
+        reviewItem.className = `bg-white/5 rounded-2xl p-5 border-2 ${answer.isCorrect ? 'border-emerald-500/30' : 'border-red-500/30'}`;
+        
+        const statusIcon = answer.isCorrect ? '✅' : '❌';
+        const statusColor = answer.isCorrect ? 'text-emerald-400' : 'text-red-400';
+        
+        reviewItem.innerHTML = `
+          <div class="flex items-start gap-3 mb-3">
+            <span class="text-2xl">${statusIcon}</span>
+            <div class="flex-1">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="bg-white/10 px-2 py-1 rounded text-xs text-purple-200">${answer.type}</span>
+                <span class="${statusColor} font-bold text-sm">Soal ${index + 1}</span>
+              </div>
+              <p class="text-white font-medium mb-3">${answer.question}</p>
+              
+              <div class="space-y-2 mb-3">
+                ${answer.options.map((opt, idx) => {
+                  let optClass = 'bg-white/5 text-purple-200';
+                  let optIcon = String.fromCharCode(65 + idx);
+                  
+                  if (idx === answer.correctAnswer) {
+                    optClass = 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/50';
+                    optIcon = '✓ ' + optIcon;
+                  } else if (idx === answer.userAnswer && !answer.isCorrect) {
+                    optClass = 'bg-red-500/20 text-red-300 border border-red-500/50';
+                    optIcon = '✗ ' + optIcon;
+                  }
+                  
+                  return `<div class="${optClass} px-3 py-2 rounded-lg text-sm">
+                    <strong>${optIcon}.</strong> ${opt}
+                  </div>`;
+                }).join('')}
+              </div>
+              
+              <div class="bg-blue-500/10 border border-blue-500/30 rounded-lg p-3">
+                <p class="text-blue-300 font-semibold text-sm mb-1">�� Pembahasan:</p>
+                <p class="text-blue-200 text-sm">${answer.explanation}</p>
+              </div>
+            </div>
+          </div>
+        `;
+        
+        reviewContainer.appendChild(reviewItem);
+      });
+    }
+
+    // Event Listeners
+    startBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      studentName = studentNameInput.value.trim();
+      studentClass = studentClassInput.value.trim();
+      
+      if (!studentName || !studentClass) {
+        // Highlight empty fields
+        if (!studentName) {
+          studentNameInput.style.borderColor = '#f5576c';
+        }
+        if (!studentClass) {
+          studentClassInput.style.borderColor = '#f5576c';
+        }
+        return;
+      }
+      
+      // Display student info
+      document.getElementById('display-name').textContent = studentName;
+      document.getElementById('display-class').textContent = studentClass;
+      document.getElementById('student-initial').textContent = studentName.charAt(0).toUpperCase();
+      
+      shuffledQuestions = shuffleArray(questions);
+      currentQuestion = 0;
+      score = 0;
+      userAnswers = [];
+      selectedAnswerIndex = null;
+      attemptCount++;
+      
+      startScreen.classList.add('hidden');
+      resultScreen.classList.add('hidden');
+      quizScreen.classList.remove('hidden');
+      quizScreen.classList.add('fade-in');
+      loadQuestion();
+    });
+    
+    // Reset border color on input
+    studentNameInput.addEventListener('input', () => {
+      studentNameInput.style.borderColor = '';
+    });
+    studentClassInput.addEventListener('input', () => {
+      studentClassInput.style.borderColor = '';
+    });
+    
+    nextBtn.addEventListener('click', nextQuestion);
+    retryBtn.addEventListener('click', () => {
+      resultScreen.classList.add('hidden');
+      startScreen.classList.remove('hidden');
+      startScreen.classList.add('fade-in');
+    });
+
+    // Element SDK
+    async function onConfigChange(newConfig) {
+      const title = newConfig.quiz_title || defaultConfig.quiz_title;
+      const subject = newConfig.subject_info || defaultConfig.subject_info;
+      
+      document.getElementById('main-title').textContent = title;
+      document.getElementById('subject-info').textContent = subject;
+    }
+
+    function mapToCapabilities(cfg) {
+      return {
+        recolorables: [],
+        borderables: [],
+        fontEditable: undefined,
+        fontSizeable: undefined
+      };
+    }
+
+    function mapToEditPanelValues(cfg) {
+      return new Map([
+        ['quiz_title', cfg.quiz_title || defaultConfig.quiz_title],
+        ['subject_info', cfg.subject_info || defaultConfig.subject_info]
+      ]);
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c5008fcc2bbf8ff',t:'MTc2OTU5ODU0MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
