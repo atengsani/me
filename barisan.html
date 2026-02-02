@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="id" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matematika SMK</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    * {
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .card-hover {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+    
+    .btn-pulse {
+      animation: pulse-glow 2s infinite;
+    }
+    
+    @keyframes pulse-glow {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5);
+      }
+      50% {
+        box-shadow: 0 0 20px 10px rgba(59, 130, 246, 0);
+      }
+    }
+    
+    .gradient-text {
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .floating {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .icon-container {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+  <div class="app-wrapper h-full w-full overflow-auto"><!-- Decorative Background Elements -->
+   <div class="fixed inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-500/5 rounded-full blur-3xl"></div>
+   </div>
+   <div class="relative min-h-full flex flex-col"><!-- Header -->
+    <header class="w-full py-8 md:py-12 px-4">
+     <div class="max-w-4xl mx-auto text-center">
+      <h1 id="main-title" class="text-4xl md:text-5xl lg:text-6xl font-extrabold gradient-text mb-3">Matematika SMK</h1>
+      <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto">Pelajari konsep barisan bilangan dengan mudah dan menyenangkan</p>
+     </div>
+    </header><!-- Main Content -->
+    <main class="flex-1 w-full px-4 pb-8">
+     <div class="max-w-4xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-6 md:gap-8"><!-- Card Barisan Aritmatika -->
+       <article class="card-hover bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden">
+        <div class="p-6 md:p-8">
+         <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mb-6 shadow-lg shadow-blue-500/30">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+          </svg>
+         </div>
+         <h2 id="aritmatika-title" class="text-2xl md:text-3xl font-bold text-white mb-4">Barisan Aritmatika</h2>
+         <p id="aritmatika-desc" class="text-slate-300 leading-relaxed mb-6">Barisan aritmatika adalah barisan bilangan yang memiliki beda (selisih) tetap antara dua suku berurutan. Contoh: 2, 5, 8, 11, 14... dengan beda = 3. Pelajari rumus suku ke-n dan jumlah n suku pertama.</p>
+         <div class="flex items-center gap-3 text-sm text-slate-400 mb-6"><span class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 font-medium">Uₙ = a + (n-1)b</span> <span class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 font-medium">Beda Tetap</span>
+         </div><a href="https://atengsani.com/barisan-aritmatika.html" target="_blank" rel="noopener noreferrer" class="btn-pulse inline-flex items-center justify-center w-full px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold rounded-xl transition-all duration-300 gap-2 group"> <span>Pelajari Barisan Aritmatika</span>
+          <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg></a>
+        </div>
+       </article><!-- Card Barisan Geometri -->
+       <article class="card-hover bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden">
+        <div class="p-6 md:p-8">
+         <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center mb-6 shadow-lg shadow-purple-500/30">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
+          </svg>
+         </div>
+         <h2 id="geometri-title" class="text-2xl md:text-3xl font-bold text-white mb-4">Barisan Geometri</h2>
+         <p id="geometri-desc" class="text-slate-300 leading-relaxed mb-6">Barisan geometri adalah barisan bilangan yang memiliki rasio (perbandingan) tetap antara dua suku berurutan. Contoh: 2, 6, 18, 54... dengan rasio = 3. Pelajari rumus suku ke-n dan jumlah n suku pertama.</p>
+         <div class="flex items-center gap-3 text-sm text-slate-400 mb-6"><span class="px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 font-medium">Uₙ = a × r<sup>n-1</sup></span> <span class="px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 font-medium">Rasio Tetap</span>
+         </div><a href="https://atengsani.com/barisan-geometri.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full px-6 py-4 bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-semibold rounded-xl transition-all duration-300 gap-2 group"> <span>Pelajari Barisan Geometri</span>
+          <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg></a>
+        </div>
+       </article>
+      </div><!-- Info Section -->
+      <div class="mt-8 p-6 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10">
+       <div class="flex items-start gap-4">
+        <div class="w-10 h-10 rounded-xl bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+         <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+         </svg>
+        </div>
+        <div>
+         <h3 class="text-white font-semibold mb-1">Tips Belajar</h3>
+         <p class="text-slate-400 text-sm">Pahami perbedaan antara barisan aritmatika (beda tetap) dan geometri (rasio tetap). Latihan soal secara rutin untuk menguasai kedua konsep ini!</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </main><!-- Footer -->
+    <footer class="w-full py-6 px-4 border-t border-white/10">
+     <div class="max-w-4xl mx-auto text-center">
+      <p id="footer-text" class="text-slate-400 text-sm md:text-base">@atengtransani</p>
+      <p class="text-slate-500 text-xs mt-2">© 2024 Matematika SMK • Belajar dengan Semangat! 📚</p>
+     </div>
+    </footer>
+   </div>
+  </div>
+  <script>
+    const defaultConfig = {
+      main_title: 'Matematika SMK',
+      aritmatika_title: 'Barisan Aritmatika',
+      aritmatika_desc: 'Barisan aritmatika adalah barisan bilangan yang memiliki beda (selisih) tetap antara dua suku berurutan. Contoh: 2, 5, 8, 11, 14... dengan beda = 3. Pelajari rumus suku ke-n dan jumlah n suku pertama.',
+      geometri_title: 'Barisan Geometri',
+      geometri_desc: 'Barisan geometri adalah barisan bilangan yang memiliki rasio (perbandingan) tetap antara dua suku berurutan. Contoh: 2, 6, 18, 54... dengan rasio = 3. Pelajari rumus suku ke-n dan jumlah n suku pertama.',
+      footer_text: '@atengtransani',
+      background_color: '#0f172a',
+      card_color: '#1e293b',
+      text_color: '#f8fafc',
+      primary_action_color: '#3b82f6',
+      secondary_action_color: '#8b5cf6',
+      font_family: 'Poppins',
+      font_size: 16
+    };
+    
+    async function onConfigChange(config) {
+      // Update text content
+      document.getElementById('main-title').textContent = config.main_title || defaultConfig.main_title;
+      document.getElementById('aritmatika-title').textContent = config.aritmatika_title || defaultConfig.aritmatika_title;
+      document.getElementById('aritmatika-desc').textContent = config.aritmatika_desc || defaultConfig.aritmatika_desc;
+      document.getElementById('geometri-title').textContent = config.geometri_title || defaultConfig.geometri_title;
+      document.getElementById('geometri-desc').textContent = config.geometri_desc || defaultConfig.geometri_desc;
+      document.getElementById('footer-text').textContent = config.footer_text || defaultConfig.footer_text;
+      
+      // Update font family
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      document.body.style.fontFamily = `${fontFamily}, Poppins, sans-serif`;
+      
+      // Update font size proportionally
+      const baseSize = config.font_size || defaultConfig.font_size;
+      document.getElementById('main-title').style.fontSize = `${baseSize * 3}px`;
+      document.getElementById('aritmatika-title').style.fontSize = `${baseSize * 1.75}px`;
+      document.getElementById('geometri-title').style.fontSize = `${baseSize * 1.75}px`;
+      document.getElementById('aritmatika-desc').style.fontSize = `${baseSize}px`;
+      document.getElementById('geometri-desc').style.fontSize = `${baseSize}px`;
+      document.getElementById('footer-text').style.fontSize = `${baseSize * 0.875}px`;
+    }
+    
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => {
+              config.background_color = value;
+              window.elementSdk.setConfig({ background_color: value });
+            }
+          },
+          {
+            get: () => config.card_color || defaultConfig.card_color,
+            set: (value) => {
+              config.card_color = value;
+              window.elementSdk.setConfig({ card_color: value });
+            }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => {
+              config.text_color = value;
+              window.elementSdk.setConfig({ text_color: value });
+            }
+          },
+          {
+            get: () => config.primary_action_color || defaultConfig.primary_action_color,
+            set: (value) => {
+              config.primary_action_color = value;
+              window.elementSdk.setConfig({ primary_action_color: value });
+            }
+          },
+          {
+            get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+            set: (value) => {
+              config.secondary_action_color = value;
+              window.elementSdk.setConfig({ secondary_action_color: value });
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (value) => {
+            config.font_family = value;
+            window.elementSdk.setConfig({ font_family: value });
+          }
+        },
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size,
+          set: (value) => {
+            config.font_size = value;
+            window.elementSdk.setConfig({ font_size: value });
+          }
+        }
+      };
+    }
+    
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ['main_title', config.main_title || defaultConfig.main_title],
+        ['aritmatika_title', config.aritmatika_title || defaultConfig.aritmatika_title],
+        ['aritmatika_desc', config.aritmatika_desc || defaultConfig.aritmatika_desc],
+        ['geometri_title', config.geometri_title || defaultConfig.geometri_title],
+        ['geometri_desc', config.geometri_desc || defaultConfig.geometri_desc],
+        ['footer_text', config.footer_text || defaultConfig.footer_text]
+      ]);
+    }
+    
+    // Initialize the Element SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c786bb21607ce1d',t:'MTc3MDAyMjAxNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
