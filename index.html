@@ -124,12 +124,6 @@
   <div class="app-wrapper h-full w-full flex flex-col overflow-auto"><!-- Header -->
    <header class="w-full py-6 px-4 md:py-8">
     <div class="max-w-4xl mx-auto text-center">
-     <div class="inline-flex items-center justify-center gap-3 mb-2">
-      <div class="icon-container p-3 rounded-xl float-animation">
-       <svg class="w-8 h-8 md:w-10 md:h-10 text-amber-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-       </svg>
-      </div>
-     </div>
      <h1 id="site-title" class="header-text text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight">Matematika SMK</h1>
      <p class="text-slate-400 mt-3 text-sm md:text-base">Belajar matematika dengan mudah dan menyenangkan</p>
     </div>
@@ -153,7 +147,19 @@
          </svg><span id="btn-2-text" class="text-white font-bold text-lg md:text-xl">Logaritma</span>
          <svg class="w-5 h-5 text-white/70" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
          </svg>
-        </div><p class="text-blue-100/80 text-sm mt-2">Pahami operasi kebalikan eksponen</p></a>
+        </div><p class="text-blue-100/80 text-sm mt-2">Pahami operasi kebalikan eksponen</p></a> <!-- Tombol Barisan --> <a href="https://atengsani.com/barisan.html" target="_blank" rel="noopener noreferrer" class="btn-primary rounded-2xl py-5 px-8 text-center block">
+        <div class="flex items-center justify-center gap-3">
+         <svg class="w-6 h-6 md:w-7 md:h-7 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+         </svg><span id="btn-3-text" class="text-white font-bold text-lg md:text-xl">Barisan</span>
+         <svg class="w-5 h-5 text-white/70" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+         </svg>
+        </div><p class="text-amber-100/80 text-sm mt-2">Pelajari pola dan urutan bilangan</p></a> <!-- Tombol Deret --> <a href="https://atengsani.com/deret.html" target="_blank" rel="noopener noreferrer" class="btn-secondary rounded-2xl py-5 px-8 text-center block">
+        <div class="flex items-center justify-center gap-3">
+         <svg class="w-6 h-6 md:w-7 md:h-7 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+         </svg><span id="btn-4-text" class="text-white font-bold text-lg md:text-xl">Deret</span>
+         <svg class="w-5 h-5 text-white/70" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+         </svg>
+        </div><p class="text-blue-100/80 text-sm mt-2">Pahami penjumlahan suku-suku barisan</p></a>
       </div>
      </div>
     </div>
@@ -170,6 +176,8 @@
       site_title: 'Matematika SMK',
       button_1_text: 'Eksponen',
       button_2_text: 'Logaritma',
+      button_3_text: 'Barisan',
+      button_4_text: 'Deret',
       footer_text: '@atengsani',
       primary_color: '#f59e0b',
       secondary_color: '#3b82f6',
@@ -182,6 +190,8 @@
       const siteTitle = document.getElementById('site-title');
       const btn1Text = document.getElementById('btn-1-text');
       const btn2Text = document.getElementById('btn-2-text');
+      const btn3Text = document.getElementById('btn-3-text');
+      const btn4Text = document.getElementById('btn-4-text');
       const footerText = document.getElementById('footer-text');
       
       if (siteTitle) {
@@ -192,6 +202,12 @@
       }
       if (btn2Text) {
         btn2Text.textContent = config.button_2_text || defaultConfig.button_2_text;
+      }
+      if (btn3Text) {
+        btn3Text.textContent = config.button_3_text || defaultConfig.button_3_text;
+      }
+      if (btn4Text) {
+        btn4Text.textContent = config.button_4_text || defaultConfig.button_4_text;
       }
       if (footerText) {
         footerText.textContent = config.footer_text || defaultConfig.footer_text;
@@ -248,6 +264,8 @@
         ['site_title', config.site_title || defaultConfig.site_title],
         ['button_1_text', config.button_1_text || defaultConfig.button_1_text],
         ['button_2_text', config.button_2_text || defaultConfig.button_2_text],
+        ['button_3_text', config.button_3_text || defaultConfig.button_3_text],
+        ['button_4_text', config.button_4_text || defaultConfig.button_4_text],
         ['footer_text', config.footer_text || defaultConfig.footer_text]
       ]);
     }
@@ -261,5 +279,5 @@
       });
     }
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c77580d2282f886',t:'MTc3MDAxMDcyMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c786062b7f8ce1d',t:'MTc3MDAyMTU1MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
