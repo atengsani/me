@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="id" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barisan Geometri - Matematika Kelas X</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        
+        .card {
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .example-card {
+            border-left: 4px solid;
+            transition: all 0.3s ease;
+        }
+        
+        .example-card:hover {
+            transform: translateX(5px);
+        }
+        
+        .quiz-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .quiz-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+        }
+        
+        .tip-box {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full w-full">
+  <div class="w-full h-full overflow-auto bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50">
+   <div class="max-w-6xl mx-auto px-4 py-8"><!-- Header -->
+    <header class="text-center mb-12 fade-in">
+     <h1 id="page-title" class="text-5xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Barisan Geometri</h1>
+     <p id="school-name" class="text-xl text-gray-700">SMK Negeri 1 Pante Ceureumen</p>
+     <p class="text-lg text-gray-600 mt-2">Matematika Kelas X</p>
+    </header><!-- Pengenalan dengan Masalah Sehari-hari -->
+    <section class="mb-12 card bg-white rounded-2xl p-8 shadow-lg fade-in">
+     <h2 class="text-3xl font-bold text-purple-700 mb-6">🌱 Apa itu Barisan Geometri?</h2>
+     <div class="space-y-6 text-gray-700 leading-relaxed">
+      <p class="text-lg">Pernahkah kamu memperhatikan pertumbuhan bakteri? Atau bagaimana virus menyebar? Atau bahkan saat kamu mem-forward pesan berantai ke teman-temanmu? Semua ini mengikuti pola <span class="font-bold text-purple-600">Barisan Geometri</span>!</p>
+      <div class="bg-gradient-to-r from-purple-100 to-blue-100 p-6 rounded-xl">
+       <h3 class="font-bold text-xl mb-3 text-purple-800">📱 Contoh: Viral di Media Sosial</h3>
+       <p class="mb-3">Kamu mem-posting video lucu. Awalnya hanya 2 teman yang share. Kemudian setiap orang yang share, membuat 2 orang lain juga share:</p>
+       <ul class="list-disc list-inside space-y-2 ml-4">
+        <li>Awalnya: <strong>2 orang</strong> share</li>
+        <li>Putaran 2: <strong>4 orang</strong> share (2 × 2)</li>
+        <li>Putaran 3: <strong>8 orang</strong> share (4 × 2)</li>
+        <li>Putaran 4: <strong>16 orang</strong> share (8 × 2)</li>
+        <li>Putaran 5: <strong>32 orang</strong> share (16 × 2)</li>
+       </ul>
+       <p class="mt-4 font-semibold text-purple-700">Pola: 2, 4, 8, 16, 32, ... (setiap suku dikali 2)</p>
+      </div>
+     </div>
+    </section><!-- Definisi dan Rumus -->
+    <section class="mb-12 card bg-white rounded-2xl p-8 shadow-lg fade-in">
+     <h2 class="text-3xl font-bold text-blue-700 mb-6">📐 Definisi &amp; Rumus</h2>
+     <div class="space-y-6">
+      <div class="bg-blue-50 p-6 rounded-xl">
+       <h3 class="font-bold text-xl mb-3 text-blue-800">Definisi</h3>
+       <p class="text-gray-700">Barisan Geometri adalah barisan bilangan dimana setiap suku diperoleh dengan <strong>mengalikan suku sebelumnya dengan bilangan tetap</strong> yang disebut <strong>rasio (r)</strong>.</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+       <div class="bg-gradient-to-br from-purple-100 to-purple-50 p-6 rounded-xl">
+        <h4 class="font-bold text-lg mb-3 text-purple-800">Suku ke-n</h4>
+        <div class="bg-white p-4 rounded-lg text-center">
+         <p class="text-2xl font-bold text-purple-700">U<sub>n</sub> = a × r<sup>(n-1)</sup></p>
+        </div>
+        <div class="mt-4 space-y-2 text-sm text-gray-700">
+         <p>• <strong>U<sub>n</sub></strong> = suku ke-n</p>
+         <p>• <strong>a</strong> = suku pertama</p>
+         <p>• <strong>r</strong> = rasio</p>
+         <p>• <strong>n</strong> = nomor suku</p>
+        </div>
+       </div>
+       <div class="bg-gradient-to-br from-blue-100 to-blue-50 p-6 rounded-xl">
+        <h4 class="font-bold text-lg mb-3 text-blue-800">Jumlah n Suku Pertama</h4>
+        <div class="bg-white p-4 rounded-lg text-center">
+         <p class="text-xl font-bold text-blue-700 mb-2">S<sub>n</sub> = a(r<sup>n</sup> - 1) / (r - 1)</p>
+         <p class="text-sm text-gray-600">(untuk r &gt; 1)</p>
+        </div>
+        <div class="bg-white p-4 rounded-lg text-center mt-3">
+         <p class="text-xl font-bold text-blue-700 mb-2">S<sub>n</sub> = a(1 - r<sup>n</sup>) / (1 - r)</p>
+         <p class="text-sm text-gray-600">(untuk r &lt; 1)</p>
+        </div>
+       </div>
+      </div>
+      <div class="bg-gradient-to-r from-green-100 to-teal-100 p-6 rounded-xl">
+       <h4 class="font-bold text-lg mb-3 text-green-800">Cara Mencari Rasio (r)</h4>
+       <div class="bg-white p-4 rounded-lg text-center">
+        <p class="text-2xl font-bold text-green-700">r = U<sub>n</sub> / U<sub>n-1</sub></p>
+       </div>
+       <p class="mt-3 text-sm text-gray-700 text-center">Membagi suku sekarang dengan suku sebelumnya</p>
+      </div>
+     </div>
+    </section><!-- Contoh Soal -->
+    <section class="mb-12 fade-in">
+     <h2 class="text-3xl font-bold text-pink-700 mb-6">💡 Contoh Soal</h2><!-- Soal Mudah -->
+     <div class="example-card bg-white rounded-xl p-6 shadow-lg mb-6 border-green-500">
+      <div class="flex items-center mb-4"><span class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">MUDAH</span>
+       <h3 class="font-bold text-xl text-gray-800">Soal 1: Mencari Suku Tertentu</h3>
+      </div>
+      <div class="space-y-4">
+       <p class="text-gray-700"><strong>Soal:</strong> Sebuah bakteri membelah diri menjadi 2 setiap jam. Jika awalnya ada 3 bakteri, berapa jumlah bakteri setelah 5 jam?</p>
+       <div class="bg-green-50 p-4 rounded-lg">
+        <p class="font-semibold text-green-800 mb-2">Penyelesaian:</p>
+        <p class="text-gray-700">Diketahui: a = 3, r = 2, n = 6 (jam ke-0 sampai jam ke-5 = 6 posisi)</p>
+        <p class="text-gray-700 mt-2">U<sub>6</sub> = 3 × 2<sup>5</sup> = 3 × 32 = <strong class="text-green-700 text-lg">96 bakteri</strong></p>
+       </div>
+      </div>
+     </div><!-- Soal Sedang -->
+     <div class="example-card bg-white rounded-xl p-6 shadow-lg mb-6 border-yellow-500">
+      <div class="flex items-center mb-4"><span class="bg-yellow-500 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">SEDANG</span>
+       <h3 class="font-bold text-xl text-gray-800">Soal 2: Mencari Rasio</h3>
+      </div>
+      <div class="space-y-4">
+       <p class="text-gray-700"><strong>Soal:</strong> Diketahui barisan geometri: 5, 15, 45, 135, ... Tentukan rasio dan suku ke-7!</p>
+       <div class="bg-yellow-50 p-4 rounded-lg">
+        <p class="font-semibold text-yellow-800 mb-2">Penyelesaian:</p>
+        <p class="text-gray-700">r = 15/5 = 3</p>
+        <p class="text-gray-700 mt-2">U<sub>7</sub> = 5 × 3<sup>6</sup> = 5 × 729 = <strong class="text-yellow-700 text-lg">3.645</strong></p>
+       </div>
+      </div>
+     </div><!-- Soal Sulit -->
+     <div class="example-card bg-white rounded-xl p-6 shadow-lg mb-6 border-red-500">
+      <div class="flex items-center mb-4"><span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">SULIT</span>
+       <h3 class="font-bold text-xl text-gray-800">Soal 3: Jumlah n Suku Pertama</h3>
+      </div>
+      <div class="space-y-4">
+       <p class="text-gray-700"><strong>Soal:</strong> Pak Ahmad menabung dengan pola geometri. Bulan pertama Rp 100.000, bulan kedua Rp 150.000, bulan ketiga Rp 225.000. Berapa total tabungan setelah 6 bulan?</p>
+       <div class="bg-red-50 p-4 rounded-lg">
+        <p class="font-semibold text-red-800 mb-2">Penyelesaian:</p>
+        <p class="text-gray-700">Diketahui: a = 100.000, r = 150.000/100.000 = 1,5, n = 6</p>
+        <p class="text-gray-700 mt-2">S<sub>6</sub> = 100.000 × (1,5<sup>6</sup> - 1) / (1,5 - 1)</p>
+        <p class="text-gray-700">S<sub>6</sub> = 100.000 × (11,390625 - 1) / 0,5</p>
+        <p class="text-gray-700">S<sub>6</sub> = 100.000 × 20,78125</p>
+        <p class="text-gray-700">S<sub>6</sub> = <strong class="text-red-700 text-lg">Rp 2.078.125</strong></p>
+       </div>
+      </div>
+     </div><!-- Soal Aplikasi -->
+     <div class="example-card bg-white rounded-xl p-6 shadow-lg border-purple-500">
+      <div class="flex items-center mb-4"><span class="bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">APLIKASI</span>
+       <h3 class="font-bold text-xl text-gray-800">Soal 4: Masalah Penyebaran Informasi</h3>
+      </div>
+      <div class="space-y-4">
+       <p class="text-gray-700"><strong>Soal:</strong> Sebuah berita viral dimulai dari 1 orang. Setiap orang yang tahu akan memberitahu 3 orang lain. Pada putaran ke berapa jumlah orang yang tahu mencapai lebih dari 1.000 orang?</p>
+       <div class="bg-purple-50 p-4 rounded-lg">
+        <p class="font-semibold text-purple-800 mb-2">Penyelesaian:</p>
+        <p class="text-gray-700">a = 1, r = 3, Cari n dimana U<sub>n</sub> &gt; 1.000</p>
+        <p class="text-gray-700 mt-2">1 × 3<sup>(n-1)</sup> &gt; 1.000</p>
+        <p class="text-gray-700">3<sup>(n-1)</sup> &gt; 1.000</p>
+        <p class="text-gray-700 mt-2">Coba n = 7: 3<sup>6</sup> = 729 (belum)</p>
+        <p class="text-gray-700">Coba n = 8: 3<sup>7</sup> = 2.187 (sudah!)</p>
+        <p class="text-gray-700 mt-2"><strong class="text-purple-700 text-lg">Jawaban: Putaran ke-8</strong></p>
+       </div>
+      </div>
+     </div>
+    </section><!-- Trik dan Tips -->
+    <section class="mb-12 fade-in">
+     <h2 class="text-3xl font-bold text-pink-700 mb-6">🎯 Trik Cepat Menyelesaikan Soal</h2>
+     <div class="grid md:grid-cols-2 gap-6">
+      <div class="tip-box rounded-xl p-6 shadow-lg text-white">
+       <h3 class="font-bold text-xl mb-3">✨ Trik 1: Cek Rasio Dulu!</h3>
+       <p>Selalu hitung rasio terlebih dahulu dengan membagi suku kedua dengan suku pertama. Ini akan memudahkan semua perhitungan selanjutnya!</p>
+      </div>
+      <div class="bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl p-6 shadow-lg text-white">
+       <h3 class="font-bold text-xl mb-3">🚀 Trik 2: Hafalkan Pangkat 2 &amp; 3</h3>
+       <p>Hafal pangkat 2 (2, 4, 8, 16, 32, 64, 128, 256, 512, 1024) dan pangkat 3 (3, 9, 27, 81, 243, 729) akan sangat membantu!</p>
+      </div>
+      <div class="bg-gradient-to-br from-green-500 to-teal-500 rounded-xl p-6 shadow-lg text-white">
+       <h3 class="font-bold text-xl mb-3">💡 Trik 3: Perhatikan r &lt; 1 atau r &gt; 1</h3>
+       <p>Jika r &gt; 1, barisan naik (gunakan rumus dengan r<sup>n</sup> - 1). Jika r &lt; 1, barisan turun (gunakan 1 - r<sup>n</sup>).</p>
+      </div>
+      <div class="bg-gradient-to-br from-yellow-500 to-orange-500 rounded-xl p-6 shadow-lg text-white">
+       <h3 class="font-bold text-xl mb-3">🎓 Trik 4: Buat Pola Visual</h3>
+       <p>Tulis beberapa suku pertama secara berurutan untuk melihat polanya. Kadang pola lebih mudah dilihat daripada dihitung!</p>
+      </div>
+     </div>
+     <div class="mt-6 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl p-6 shadow-lg text-white">
+      <h3 class="font-bold text-xl mb-3">⚡ Trik 5: Gunakan Kalkulator dengan Bijak</h3>
+      <p class="mb-2">Untuk pangkat besar, gunakan tombol x<sup>y</sup> di kalkulator. Tapi pastikan kamu paham konsepnya dulu!</p>
+      <p class="text-sm opacity-90">Contoh: Untuk 2<sup>8</sup>, tekan 2, lalu x<sup>y</sup>, lalu 8, lalu =</p>
+     </div>
+    </section><!-- Tombol Kuis -->
+    <section class="mb-12 text-center fade-in">
+     <div class="bg-white rounded-2xl p-8 shadow-lg">
+      <h2 class="text-3xl font-bold text-gray-800 mb-4">Siap Menguji Pemahamanmu? 🎯</h2>
+      <p class="text-gray-600 mb-6 text-lg">Kerjakan kuis untuk mengukur sejauh mana kamu memahami Barisan Geometri!</p><a href="https://atengsani/kuis-barisan-geometri.html" target="_blank" rel="noopener noreferrer" class="quiz-button inline-block text-white px-12 py-4 rounded-full text-xl font-bold shadow-xl" id="quiz-button"> 🚀 Mulai Kuis Sekarang! </a>
+     </div>
+    </section><!-- Footer -->
+    <footer class="text-center py-8 fade-in">
+     <div class="border-t border-gray-300 pt-6">
+      <p id="footer-credit" class="text-gray-600 text-lg font-medium">by @atengtransani</p>
+      <p class="text-gray-500 text-sm mt-2">© 2024 SMK Negeri 1 Pante Ceureumen</p>
+     </div>
+    </footer>
+   </div>
+  </div>
+  <script>
+        const defaultConfig = {
+            page_title: "Barisan Geometri",
+            school_name: "SMK Negeri 1 Pante Ceureumen",
+            quiz_button_text: "🚀 Mulai Kuis Sekarang!",
+            footer_credit: "by @atengtransani",
+            primary_color: "#9333ea",
+            secondary_color: "#ffffff",
+            text_color: "#374151",
+            accent_color: "#3b82f6",
+            button_color: "#667eea"
+        };
+
+        async function onConfigChange(config) {
+            const pageTitle = document.getElementById('page-title');
+            const schoolName = document.getElementById('school-name');
+            const quizButton = document.getElementById('quiz-button');
+            const footerCredit = document.getElementById('footer-credit');
+
+            if (pageTitle) {
+                pageTitle.textContent = config.page_title || defaultConfig.page_title;
+            }
+            if (schoolName) {
+                schoolName.textContent = config.school_name || defaultConfig.school_name;
+            }
+            if (quizButton) {
+                quizButton.textContent = config.quiz_button_text || defaultConfig.quiz_button_text;
+            }
+            if (footerCredit) {
+                footerCredit.textContent = config.footer_credit || defaultConfig.footer_credit;
+            }
+
+            const primaryColor = config.primary_color || defaultConfig.primary_color;
+            const secondaryColor = config.secondary_color || defaultConfig.secondary_color;
+            const textColor = config.text_color || defaultConfig.text_color;
+            const accentColor = config.accent_color || defaultConfig.accent_color;
+            const buttonColor = config.button_color || defaultConfig.button_color;
+
+            if (pageTitle) {
+                pageTitle.style.background = `linear-gradient(to right, ${primaryColor}, ${accentColor})`;
+                pageTitle.style.webkitBackgroundClip = 'text';
+                pageTitle.style.backgroundClip = 'text';
+                pageTitle.style.color = 'transparent';
+            }
+
+            document.querySelectorAll('h2, h3').forEach(heading => {
+                heading.style.color = primaryColor;
+            });
+
+            document.querySelectorAll('.card').forEach(card => {
+                card.style.backgroundColor = secondaryColor;
+            });
+
+            document.body.style.color = textColor;
+
+            if (quizButton) {
+                quizButton.style.background = `linear-gradient(135deg, ${buttonColor} 0%, ${primaryColor} 100%)`;
+            }
+        }
+
+        function mapToCapabilities(config) {
+            return {
+                recolorables: [
+                    {
+                        get: () => config.primary_color || defaultConfig.primary_color,
+                        set: (value) => {
+                            if (window.elementSdk) {
+                                window.elementSdk.config.primary_color = value;
+                                window.elementSdk.setConfig({ primary_color: value });
+                            }
+                        }
+                    },
+                    {
+                        get: () => config.secondary_color || defaultConfig.secondary_color,
+                        set: (value) => {
+                            if (window.elementSdk) {
+                                window.elementSdk.config.secondary_color = value;
+                                window.elementSdk.setConfig({ secondary_color: value });
+                            }
+                        }
+                    },
+                    {
+                        get: () => config.text_color || defaultConfig.text_color,
+                        set: (value) => {
+                            if (window.elementSdk) {
+                                window.elementSdk.config.text_color = value;
+                                window.elementSdk.setConfig({ text_color: value });
+                            }
+                        }
+                    },
+                    {
+                        get: () => config.accent_color || defaultConfig.accent_color,
+                        set: (value) => {
+                            if (window.elementSdk) {
+                                window.elementSdk.config.accent_color = value;
+                                window.elementSdk.setConfig({ accent_color: value });
+                            }
+                        }
+                    },
+                    {
+                        get: () => config.button_color || defaultConfig.button_color,
+                        set: (value) => {
+                            if (window.elementSdk) {
+                                window.elementSdk.config.button_color = value;
+                                window.elementSdk.setConfig({ button_color: value });
+                            }
+                        }
+                    }
+                ],
+                borderables: [],
+                fontEditable: undefined,
+                fontSizeable: undefined
+            };
+        }
+
+        function mapToEditPanelValues(config) {
+            return new Map([
+                ["page_title", config.page_title || defaultConfig.page_title],
+                ["school_name", config.school_name || defaultConfig.school_name],
+                ["quiz_button_text", config.quiz_button_text || defaultConfig.quiz_button_text],
+                ["footer_credit", config.footer_credit || defaultConfig.footer_credit]
+            ]);
+        }
+
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig,
+                onConfigChange,
+                mapToCapabilities,
+                mapToEditPanelValues
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c7892a57214fdea',t:'MTc3MDAyMzYwOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
