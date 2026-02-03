@@ -134,6 +134,22 @@
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
+
+    .stagger-animation {
+      animation: fadeSlideUp 0.6s ease-out forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
@@ -146,40 +162,40 @@
      <p class="text-white mt-3 text-sm md:text-base drop-shadow-md">Belajar matematika dengan mudah dan menyenangkan</p>
     </div>
    </header><!-- Main Content -->
-   <main class="flex-1 flex items-center justify-center px-4 py-8">
+   <main class="flex-1 flex items-center justify-center px-4 py-2">
     <div class="w-full max-w-2xl">
-     <div class="p-6 md:p-10">
+     <div class="p-3 md:p-6">
       <div class="text-center mb-4">
        <h2 class="text-black text-xl md:text-2xl font-semibold mb-2">Pilih Materi</h2>
        <p class="text-slate-400 text-sm">Klik tombol di bawah untuk mempelajari materi</p>
       </div>
-      <div class="grid grid-cols-2 gap-3 sm:gap-4 md:gap-6"><!-- Tombol Eksponen --> <a href="https://atengsani.com/eksponen.html" target="_blank" rel="noopener noreferrer" class="btn-primary pulse-glow rounded-lg sm:rounded-xl md:rounded-2xl py-3 sm:py-4 md:py-5 px-2 sm:px-4 md:px-6 text-center block">
-        <div class="flex flex-col items-center justify-center gap-1 sm:gap-2">
-         <svg class="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-         </svg><span id="btn-1-text" class="text-white font-bold text-xs sm:text-sm md:text-base">Eksponen</span>
-        </div><p class="text-amber-100/80 text-xs hidden sm:block mt-1 md:mt-2">Bilangan berpangkat</p></a> <!-- Tombol Logaritma --> <a href="https://atengsani.com/logaritma.html" target="_blank" rel="noopener noreferrer" class="btn-secondary rounded-lg sm:rounded-xl md:rounded-2xl py-3 sm:py-4 md:py-5 px-2 sm:px-4 md:px-6 text-center block">
-        <div class="flex flex-col items-center justify-center gap-1 sm:gap-2">
-         <svg class="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-         </svg><span id="btn-2-text" class="text-white font-bold text-xs sm:text-sm md:text-base">Logaritma</span>
-        </div><p class="text-blue-100/80 text-xs hidden sm:block mt-1 md:mt-2">Operasi eksponen</p></a> <!-- Tombol Barisan --> <a href="https://atengsani.com/barisan.html" target="_blank" rel="noopener noreferrer" class="btn-primary rounded-lg sm:rounded-xl md:rounded-2xl py-3 sm:py-4 md:py-5 px-2 sm:px-4 md:px-6 text-center block">
-        <div class="flex flex-col items-center justify-center gap-1 sm:gap-2">
-         <svg class="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-         </svg><span id="btn-3-text" class="text-white font-bold text-xs sm:text-sm md:text-base">Barisan</span>
-        </div><p class="text-amber-100/80 text-xs hidden sm:block mt-1 md:mt-2">Urutan bilangan</p></a> <!-- Tombol Deret --> <a href="https://atengsani.com/deret.html" target="_blank" rel="noopener noreferrer" class="btn-secondary rounded-lg sm:rounded-xl md:rounded-2xl py-3 sm:py-4 md:py-5 px-2 sm:px-4 md:px-6 text-center block">
-        <div class="flex flex-col items-center justify-center gap-1 sm:gap-2">
-         <svg class="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-         </svg><span id="btn-4-text" class="text-white font-bold text-xs sm:text-sm md:text-base">Deret</span>
-        </div><p class="text-blue-100/80 text-xs hidden sm:block mt-1 md:mt-2">Penjumlahan suku</p></a>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-4"><!-- Tombol Eksponen --> <a href="https://atengsani.com/eksponen.html" target="_blank" rel="noopener noreferrer" class="btn-primary pulse-glow rounded-xl py-5 sm:py-6 px-4 sm:px-5 text-center block transition-all duration-300 hover:scale-105 stagger-animation" style="animation-delay: 0s;">
+        <div class="flex flex-col items-center justify-center gap-2">
+         <svg class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+         </svg><span id="btn-1-text" class="text-white font-bold text-sm sm:text-base md:text-lg">Eksponen</span>
+        </div><p class="text-amber-100/80 text-xs sm:text-sm mt-2">Bilangan berpangkat</p></a> <!-- Tombol Logaritma --> <a href="https://atengsani.com/logaritma.html" target="_blank" rel="noopener noreferrer" class="btn-secondary rounded-xl py-5 sm:py-6 px-4 sm:px-5 text-center block transition-all duration-300 hover:scale-105 stagger-animation" style="animation-delay: 0.1s;">
+        <div class="flex flex-col items-center justify-center gap-2">
+         <svg class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+         </svg><span id="btn-2-text" class="text-white font-bold text-sm sm:text-base md:text-lg">Logaritma</span>
+        </div><p class="text-blue-100/80 text-xs sm:text-sm mt-2">Operasi eksponen</p></a> <!-- Tombol Barisan --> <a href="https://atengsani.com/barisan.html" target="_blank" rel="noopener noreferrer" class="btn-primary rounded-xl py-5 sm:py-6 px-4 sm:px-5 text-center block transition-all duration-300 hover:scale-105 stagger-animation" style="animation-delay: 0.2s;">
+        <div class="flex flex-col items-center justify-center gap-2">
+         <svg class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+         </svg><span id="btn-3-text" class="text-white font-bold text-sm sm:text-base md:text-lg">Barisan</span>
+        </div><p class="text-amber-100/80 text-xs sm:text-sm mt-2">Urutan bilangan</p></a> <!-- Tombol Deret --> <a href="https://atengsani.com/deret.html" target="_blank" rel="noopener noreferrer" class="btn-secondary rounded-xl py-5 sm:py-6 px-4 sm:px-5 text-center block transition-all duration-300 hover:scale-105 stagger-animation" style="animation-delay: 0.3s;">
+        <div class="flex flex-col items-center justify-center gap-2">
+         <svg class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+         </svg><span id="btn-4-text" class="text-white font-bold text-sm sm:text-base md:text-lg">Deret</span>
+        </div><p class="text-blue-100/80 text-xs sm:text-sm mt-2">Penjumlahan suku</p></a>
       </div>
      </div>
     </div>
    </main><!-- Footer -->
-   <footer class="w-full py-6 px-4 border-t border-slate-700/50">
+   <footer class="w-full py-6 px-4 footer-dynamic">
     <div class="max-w-4xl mx-auto text-center">
-     <div class="flex items-center justify-center gap-3 md:gap-4">
-      <p id="footer-text" class="text-slate-400 text-sm md:text-base font-medium">@atengsani</p><img src="https://imgur.com/jt91yJc.jpg" alt="Ilustrasi matematika" loading="lazy" class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-cover rounded-md shadow-lg" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Image unavailable';">
+     <div class="flex flex-col items-center justify-center gap-3">
+      <p id="footer-text" class="text-white text-sm md:text-base font-medium drop-shadow-md">@atengsani</p><img src="https://imgur.com/jt91yJc.jpg" alt="Logo Matematika SMK" loading="lazy" class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-cover rounded-md shadow-lg drop-shadow-lg" onerror="this.style.display='none';">
      </div>
-     <p class="text-slate-500 text-xs mt-3">© 2026 • Dibuat dengan ❤��� untuk pembelajaran</p>
+     <p class="text-white text-xs mt-3 drop-shadow-md">© 2026 • Dibuat dengan ❤ untuk pembelajaran</p>
     </div>
    </footer>
   </div>
@@ -291,5 +307,5 @@
       });
     }
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c794c3ec20cce22',t:'MTc3MDAzMTIxMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c7e0976f068fe03',t:'MTc3MDA4MDkwNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
