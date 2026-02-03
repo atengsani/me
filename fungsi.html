@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="id" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matematika SMK</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    * {
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, #1e3a5f 0%, #0d1b2a 50%, #1b263b 100%);
+    }
+    
+    .card-gradient {
+      background: linear-gradient(145deg, #243b55 0%, #141e30 100%);
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(245, 158, 11, 0.4);
+    }
+    
+    .btn-secondary {
+      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-secondary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .btn-secondary:hover::before {
+      left: 100%;
+    }
+    
+    .btn-secondary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+    }
+    
+    .float-animation {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .pulse-glow {
+      animation: pulseGlow 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.3); }
+      50% { box-shadow: 0 0 40px rgba(245, 158, 11, 0.6); }
+    }
+    
+    .header-text {
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #fcd34d 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .math-pattern {
+      background-image: 
+        radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(99, 102, 241, 0.05) 0%, transparent 30%);
+    }
+    
+    .icon-container {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(217, 119, 6, 0.1) 100%);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .header-dynamic {
+      background: linear-gradient(135deg, #f59e0b 0%, #3b82f6 50%, #ec4899 100%);
+      background-size: 300% 300%;
+      animation: gradientShift 8s ease infinite;
+    }
+
+    .footer-dynamic {
+      background: linear-gradient(135deg, #ec4899 0%, #3b82f6 50%, #f59e0b 100%);
+      background-size: 300% 300%;
+      animation: gradientShift 8s ease infinite reverse;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .stagger-animation {
+      animation: fadeSlideUp 0.6s ease-out forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full gradient-bg math-pattern">
+  <div class="app-wrapper h-full w-full flex flex-col overflow-auto"><!-- Header -->
+   <header class="w-full py-6 px-4 md:py-8 header-dynamic">
+    <div class="max-w-4xl mx-auto text-center">
+     <h1 id="site-title" class="text-white text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight drop-shadow-lg">Matematika SMK</h1>
+     <p class="text-white mt-3 text-sm md:text-base drop-shadow-md">Belajar matematika dengan mudah dan menyenangkan</p>
+    </div>
+   </header><!-- Main Content -->
+   <main class="flex-1 flex items-center justify-center px-4 py-2">
+    <div class="w-full max-w-2xl">
+     <div class="p-3 md:p-6">
+      <div class="text-center mb-4">
+       <h2 class="text-black text-xl md:text-2xl font-semibold mb-2">Pilih Materi</h2>
+       <p class="text-slate-400 text-sm">Klik tombol di bawah untuk mempelajari materi</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-5 lg:gap-4"><!-- Tombol Eksponen --> <a href="https://atengsani.com/eksponen.html" target="_blank" rel="noopener noreferrer" class="btn-primary pulse-glow rounded-xl py-5 sm:py-6 px-4 sm:px-5 text-center block transition-all duration-300 hover:scale-105 stagger-animation" style="animation-delay: 0s;">
+        <div class="flex flex-col items-center justify-center gap-2">
+         <svg class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+         </svg><span id="btn-1-text" class="text-white font-bold text-sm sm:text-base md:text-lg">Eksponen</span>
+        </div><p class="text-amber-100/80 text-xs sm:text-sm mt-2">Bilangan berpangkat</p></a> <!-- Tombol Logaritma --> <a href="https://atengsani.com/logaritma.html" target="_blank" rel="noopener noreferrer" class="btn-secondary rounded-xl py-5 sm:py-6 px-4 sm:px-5 text-center block transition-all duration-300 hover:scale-105 stagger-animation" style="animation-delay: 0.1s;">
+        <div class="flex flex-col items-center justify-center gap-2">
+         <svg class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+         </svg><span id="btn-2-text" class="text-white font-bold text-sm sm:text-base md:text-lg">Logaritma</span>
+        </div><p class="text-blue-100/80 text-xs sm:text-sm mt-2">Operasi eksponen</p></a> <!-- Tombol Barisan --> <a href="https://atengsani.com/barisan.html" target="_blank" rel="noopener noreferrer" class="btn-primary rounded-xl py-5 sm:py-6 px-4 sm:px-5 text-center block transition-all duration-300 hover:scale-105 stagger-animation" style="animation-delay: 0.2s;">
+        <div class="flex flex-col items-center justify-center gap-2">
+         <svg class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+         </svg><span id="btn-3-text" class="text-white font-bold text-sm sm:text-base md:text-lg">Barisan</span>
+        </div><p class="text-amber-100/80 text-xs sm:text-sm mt-2">Urutan bilangan</p></a> <!-- Tombol Deret --> <a href="https://atengsani.com/deret.html" target="_blank" rel="noopener noreferrer" class="btn-secondary rounded-xl py-5 sm:py-6 px-4 sm:px-5 text-center block transition-all duration-300 hover:scale-105 stagger-animation" style="animation-delay: 0.3s;">
+        <div class="flex flex-col items-center justify-center gap-2">
+         <svg class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+         </svg><span id="btn-4-text" class="text-white font-bold text-sm sm:text-base md:text-lg">Deret</span>
+        </div><p class="text-blue-100/80 text-xs sm:text-sm mt-2">Penjumlahan suku</p></a> <!-- Tombol Fungsi --> <a href="https://atengsani.com/fungsi.html" target="_blank" rel="noopener noreferrer" class="btn-primary rounded-xl py-5 sm:py-6 px-4 sm:px-5 text-center block transition-all duration-300 hover:scale-105 stagger-animation" style="animation-delay: 0.4s;">
+        <div class="flex flex-col items-center justify-center gap-2">
+         <svg class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+         </svg><span id="btn-5-text" class="text-white font-bold text-sm sm:text-base md:text-lg">Fungsi</span>
+        </div><p class="text-amber-100/80 text-xs sm:text-sm mt-2">Relasi dan mapping</p></a>
+      </div>
+     </div>
+    </div>
+   </main><!-- Footer -->
+   <footer class="w-full py-6 px-4 footer-dynamic">
+    <div class="max-w-4xl mx-auto text-center">
+     <div class="flex flex-col items-center justify-center gap-3">
+      <p id="footer-text" class="text-white text-sm md:text-base font-medium drop-shadow-md">@atengsani</p><img src="https://imgur.com/jt91yJc.jpg" alt="Logo Matematika SMK" loading="lazy" class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-cover rounded-md shadow-lg drop-shadow-lg" onerror="this.style.display='none';">
+     </div>
+     <p class="text-white text-xs mt-3 drop-shadow-md">© 2026 • Dibuat dengan ❤ untuk pembelajaran</p>
+    </div>
+   </footer>
+  </div>
+  <script>
+    const defaultConfig = {
+      site_title: 'Matematika SMK',
+      button_1_text: 'Eksponen',
+      button_2_text: 'Logaritma',
+      button_3_text: 'Barisan',
+      button_4_text: 'Deret',
+      button_5_text: 'Fungsi',
+      footer_text: '@atengsani',
+      primary_color: '#f59e0b',
+      secondary_color: '#3b82f6',
+      background_color: '#0d1b2a',
+      text_color: '#f8fafc',
+      accent_color: '#1e3a5f'
+    };
+    
+    async function onConfigChange(config) {
+      const siteTitle = document.getElementById('site-title');
+      const btn1Text = document.getElementById('btn-1-text');
+      const btn2Text = document.getElementById('btn-2-text');
+      const btn3Text = document.getElementById('btn-3-text');
+      const btn4Text = document.getElementById('btn-4-text');
+      const btn5Text = document.getElementById('btn-5-text');
+      const footerText = document.getElementById('footer-text');
+      
+      if (siteTitle) {
+        siteTitle.textContent = config.site_title || defaultConfig.site_title;
+      }
+      if (btn1Text) {
+        btn1Text.textContent = config.button_1_text || defaultConfig.button_1_text;
+      }
+      if (btn2Text) {
+        btn2Text.textContent = config.button_2_text || defaultConfig.button_2_text;
+      }
+      if (btn3Text) {
+        btn3Text.textContent = config.button_3_text || defaultConfig.button_3_text;
+      }
+      if (btn4Text) {
+        btn4Text.textContent = config.button_4_text || defaultConfig.button_4_text;
+      }
+      if (btn5Text) {
+        btn5Text.textContent = config.button_5_text || defaultConfig.button_5_text;
+      }
+      if (footerText) {
+        footerText.textContent = config.footer_text || defaultConfig.footer_text;
+      }
+    }
+    
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => {
+              config.background_color = value;
+              window.elementSdk.setConfig({ background_color: value });
+            }
+          },
+          {
+            get: () => config.primary_color || defaultConfig.primary_color,
+            set: (value) => {
+              config.primary_color = value;
+              window.elementSdk.setConfig({ primary_color: value });
+            }
+          },
+          {
+            get: () => config.secondary_color || defaultConfig.secondary_color,
+            set: (value) => {
+              config.secondary_color = value;
+              window.elementSdk.setConfig({ secondary_color: value });
+            }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => {
+              config.text_color = value;
+              window.elementSdk.setConfig({ text_color: value });
+            }
+          },
+          {
+            get: () => config.accent_color || defaultConfig.accent_color,
+            set: (value) => {
+              config.accent_color = value;
+              window.elementSdk.setConfig({ accent_color: value });
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: undefined,
+        fontSizeable: undefined
+      };
+    }
+    
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ['site_title', config.site_title || defaultConfig.site_title],
+        ['button_1_text', config.button_1_text || defaultConfig.button_1_text],
+        ['button_2_text', config.button_2_text || defaultConfig.button_2_text],
+        ['button_3_text', config.button_3_text || defaultConfig.button_3_text],
+        ['button_4_text', config.button_4_text || defaultConfig.button_4_text],
+        ['button_5_text', config.button_5_text || defaultConfig.button_5_text],
+        ['footer_text', config.footer_text || defaultConfig.footer_text]
+      ]);
+    }
+    
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c7e6dbd9708880e',t:'MTc3MDA4NTAxMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
