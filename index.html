@@ -169,7 +169,7 @@
        <h2 class="text-black text-xl md:text-2xl font-semibold mb-2">Pilih Materi</h2>
        <p class="text-slate-400 text-sm">Klik tombol di bawah untuk mempelajari materi</p>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-4"><!-- Tombol Eksponen --> <a href="https://atengsani.com/eksponen.html" target="_blank" rel="noopener noreferrer" class="btn-primary pulse-glow rounded-xl py-5 sm:py-6 px-4 sm:px-5 text-center block transition-all duration-300 hover:scale-105 stagger-animation" style="animation-delay: 0s;">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-5 lg:gap-4"><!-- Tombol Eksponen --> <a href="https://atengsani.com/eksponen.html" target="_blank" rel="noopener noreferrer" class="btn-primary pulse-glow rounded-xl py-5 sm:py-6 px-4 sm:px-5 text-center block transition-all duration-300 hover:scale-105 stagger-animation" style="animation-delay: 0s;">
         <div class="flex flex-col items-center justify-center gap-2">
          <svg class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
          </svg><span id="btn-1-text" class="text-white font-bold text-sm sm:text-base md:text-lg">Eksponen</span>
@@ -185,7 +185,11 @@
         <div class="flex flex-col items-center justify-center gap-2">
          <svg class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
          </svg><span id="btn-4-text" class="text-white font-bold text-sm sm:text-base md:text-lg">Deret</span>
-        </div><p class="text-blue-100/80 text-xs sm:text-sm mt-2">Penjumlahan suku</p></a>
+        </div><p class="text-blue-100/80 text-xs sm:text-sm mt-2">Penjumlahan suku</p></a> <!-- Tombol Fungsi --> <a href="https://atengsani.com/fungsi.html" target="_blank" rel="noopener noreferrer" class="btn-primary rounded-xl py-5 sm:py-6 px-4 sm:px-5 text-center block transition-all duration-300 hover:scale-105 stagger-animation" style="animation-delay: 0.4s;">
+        <div class="flex flex-col items-center justify-center gap-2">
+         <svg class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+         </svg><span id="btn-5-text" class="text-white font-bold text-sm sm:text-base md:text-lg">Fungsi</span>
+        </div><p class="text-amber-100/80 text-xs sm:text-sm mt-2">Relasi dan mapping</p></a>
       </div>
      </div>
     </div>
@@ -206,6 +210,7 @@
       button_2_text: 'Logaritma',
       button_3_text: 'Barisan',
       button_4_text: 'Deret',
+      button_5_text: 'Fungsi',
       footer_text: '@atengsani',
       primary_color: '#f59e0b',
       secondary_color: '#3b82f6',
@@ -220,6 +225,7 @@
       const btn2Text = document.getElementById('btn-2-text');
       const btn3Text = document.getElementById('btn-3-text');
       const btn4Text = document.getElementById('btn-4-text');
+      const btn5Text = document.getElementById('btn-5-text');
       const footerText = document.getElementById('footer-text');
       
       if (siteTitle) {
@@ -236,6 +242,9 @@
       }
       if (btn4Text) {
         btn4Text.textContent = config.button_4_text || defaultConfig.button_4_text;
+      }
+      if (btn5Text) {
+        btn5Text.textContent = config.button_5_text || defaultConfig.button_5_text;
       }
       if (footerText) {
         footerText.textContent = config.footer_text || defaultConfig.footer_text;
@@ -294,6 +303,7 @@
         ['button_2_text', config.button_2_text || defaultConfig.button_2_text],
         ['button_3_text', config.button_3_text || defaultConfig.button_3_text],
         ['button_4_text', config.button_4_text || defaultConfig.button_4_text],
+        ['button_5_text', config.button_5_text || defaultConfig.button_5_text],
         ['footer_text', config.footer_text || defaultConfig.footer_text]
       ]);
     }
@@ -307,5 +317,5 @@
       });
     }
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c7e0976f068fe03',t:'MTc3MDA4MDkwNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c7e6dbd9708880e',t:'MTc3MDA4NTAxMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
